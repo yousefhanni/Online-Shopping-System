@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Category>
+
+<h3>Categories List</h3>
+<a class="btn btn-primary" asp-controller="Category" asp-action="Create">Create</a>
+<br />
+
+<table class="table table-hover">
+    <thead class="text-bold">
+        <tr>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Date Created</td>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td style="word-wrap: break-word; min-width: 160px; max-width: 200px;">@item.Description</td>
+            <td>@item.CreatedTime</td>
+             <td>
+                <a class="btn btn-success" asp-controller="Category" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="btn btn-danger" asp-controller="Category" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="5"></td> <!-- This will create an empty cell spanning all columns -->
+        </tr>
+    }
+</table>
