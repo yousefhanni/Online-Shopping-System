@@ -35,6 +35,8 @@ namespace MyShop.Web.Controllers
             {
                 await _context.Categories.AddAsync(category);
                 await _context.SaveChangesAsync();
+                TempData["Create"] = "Item has Created Successfully";
+
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
@@ -58,6 +60,8 @@ namespace MyShop.Web.Controllers
             {
                 _context.Categories.Update(category);
                 await _context.SaveChangesAsync();
+                TempData["Update"] = "Item has Updated Successfully";
+
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
@@ -83,7 +87,8 @@ namespace MyShop.Web.Controllers
          
            _context.Categories.Remove(category);
            await _context.SaveChangesAsync();
-           return RedirectToAction(nameof(Index));
+            TempData["Delete"] = "Item has Deleted Successfully";
+            return RedirectToAction(nameof(Index));
          
         }
     }

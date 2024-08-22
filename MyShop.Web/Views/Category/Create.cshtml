@@ -1,12 +1,11 @@
 ﻿@model Category
 
 @{
-    ViewData["Title"] = "Create";
+    ViewBag.PageTitle = "Category Management";
+    ViewBag.CardTitle = "Create Category";
+    Layout = "~/Views/Shared/_Dashboard.cshtml";
 }
-<h1>Create</h1> 
 
-<h4>Category</h4>
-<hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create" method="post">
