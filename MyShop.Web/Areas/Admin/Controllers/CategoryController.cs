@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyShop.Domain.Models;
 
-namespace MyShop.Web.Controllers
+namespace MyShop.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -34,7 +35,7 @@ namespace MyShop.Web.Controllers
             if (ModelState.IsValid)
             {
                 _unitOfWork.Category.Add(category);
-                await _unitOfWork.CompleteAsync();  
+                await _unitOfWork.CompleteAsync();
                 TempData["Create"] = "Item has been created successfully.";
                 return RedirectToAction(nameof(Index));
             }
@@ -48,7 +49,7 @@ namespace MyShop.Web.Controllers
             var category = await _unitOfWork.Category.GetItemAsync(c => c.Id == id);
             if (category == null)
                 return NotFound();
-                
+
             return View(category);
         }
 
@@ -89,7 +90,7 @@ namespace MyShop.Web.Controllers
                 return NotFound();
 
             _unitOfWork.Category.Remove(category);
-            await _unitOfWork.CompleteAsync();  
+            await _unitOfWork.CompleteAsync();
             TempData["Delete"] = "Item has been deleted successfully.";
 
             return RedirectToAction(nameof(Index));
