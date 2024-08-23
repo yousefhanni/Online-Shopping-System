@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MyShop.Web.Models
+namespace MyShop.Domain.Models
 {
     // Represents a category for organizing products in the system
     public class Category

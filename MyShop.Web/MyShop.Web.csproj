@@ -59,4 +59,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyShop.DAL\MyShop.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

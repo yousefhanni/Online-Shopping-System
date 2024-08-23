@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using Myshop.DAL.Data.Context;
+using Myshop.DAL.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +7,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 

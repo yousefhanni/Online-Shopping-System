@@ -1,95 +1,98 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Myshop.DAL.Data.Context;
-using MyShop.Web.Models;
-using System.Threading.Tasks;
+using MyShop.Domain.Models;
 
 namespace MyShop.Web.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryController(ApplicationDbContext context)
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
+        // GET: Category/Index
         public async Task<IActionResult> Index()
         {
-            var categories = await _context.Categories.ToListAsync();
+            var categories = await _unitOfWork.Category.GetAllAsync();
             return View(categories);
         }
 
+        // GET: Category/Create
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        // POST: Category/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Category category)
         {
             if (ModelState.IsValid)
             {
-                await _context.Categories.AddAsync(category);
-                await _context.SaveChangesAsync();
-                TempData["Create"] = "Item has Created Successfully";
-
+                _unitOfWork.Category.Add(category);
+                await _unitOfWork.CompleteAsync();  
+                TempData["Create"] = "Item has been created successfully.";
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
         }
 
+        // GET: Category/Edit/{id}
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _unitOfWork.Category.GetItemAsync(c => c.Id == id);
             if (category == null)
                 return NotFound();
-
+                
             return View(category);
         }
 
+        // POST: Category/Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Category category)
         {
             if (ModelState.IsValid)
             {
-                _context.Categories.Update(category);
-                await _context.SaveChangesAsync();
-                TempData["Update"] = "Item has Updated Successfully";
-
+                await _unitOfWork.Category.UpdateAsync(category);
+                await _unitOfWork.CompleteAsync();
+                TempData["Update"] = "Item has been updated successfully.";
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
         }
 
+
+        // GET: Category/Delete/{id}
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _unitOfWork.Category.GetItemAsync(c => c.Id == id);
             if (category == null)
                 return NotFound();
 
             return View(category);
         }
 
+        // POST: Category/Delete/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-           var category = await _context.Categories.FindAsync(id);
-           if (category == null)
-               return NotFound();
-         
-           _context.Categories.Remove(category);
-           await _context.SaveChangesAsync();
-            TempData["Delete"] = "Item has Deleted Successfully";
+            var category = await _unitOfWork.Category.GetItemAsync(c => c.Id == id);
+            if (category == null)
+                return NotFound();
+
+            _unitOfWork.Category.Remove(category);
+            await _unitOfWork.CompleteAsync();  
+            TempData["Delete"] = "Item has been deleted successfully.";
+
             return RedirectToAction(nameof(Index));
-         
         }
     }
 }

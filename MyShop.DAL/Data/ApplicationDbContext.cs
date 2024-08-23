@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MyShop.Web.Models;
+using MyShop.Domain.Models;
 
 
-namespace Myshop.DAL.Data.Context
+namespace Myshop.DAL.Data
 {
     public class ApplicationDbContext : DbContext
     {
