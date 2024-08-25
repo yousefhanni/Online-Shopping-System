@@ -22,10 +22,6 @@ namespace myshop.DataAccess.Implementation
                 categoryInDb.Name = category.Name;
                 categoryInDb.Description = category.Description;
                 categoryInDb.CreatedTime = DateTime.Now;
-
-                // Use the context to update the entity.
-                _context.Categories.Update(categoryInDb);
-                await _context.SaveChangesAsync();
             }
         }
     }

@@ -59,7 +59,7 @@ namespace MyShop.DataAccess.Implementation
             }
 
             return await query.ToListAsync();
-        }
+            }
 
         public async Task<T> GetItemAsync(Expression<Func<T, bool>>? predicate = null, string? includeProperties = null)
         {

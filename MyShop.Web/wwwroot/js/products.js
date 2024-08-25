@@ -6,11 +6,11 @@ $(document).ready(function () {
 function loaddata() {
     dtble = $("#mytable").DataTable({
         "ajax": {
-            "url":"/Admin/Product/GetData"
+            "url": "/Admin/Product/GetData"
         },
         "columns": [
             { "data": "name" },
-            { "data": "description"},
+            { "data": "description" },
             { "data": "price" },
             { "data": "category.name" },
             {
@@ -20,12 +20,12 @@ function loaddata() {
                             <a href="/Admin/Product/Edit/${data}" class="btn btn-success">Edit</a>
                             <a onClick=DeleteItem("/Admin/Product/Delete/${data}") class="btn btn-danger">Delete</a>
                             `
-                    
-                }
 
                 }
 
-            
+            }
+
+
 
         ]
     });
@@ -44,17 +44,17 @@ function DeleteItem(url) {
         if (result.isConfirmed) {
             $.ajax({
                 type: "DELETE",
-                url: url,                
+                url: url,
                 success: function (data) {
                     if (data.success) {
                         toastr.success(data.message);
-                        dtble.ajax.reload();                        
+                        dtble.ajax.reload();
                     }
                     else {
                         toastr.error(data.message);
                     }
                 }
-            })            
+            })
         }
     })
 }
