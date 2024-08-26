@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Product>
+
+<!-- Main section for displaying the product listing and search functionality -->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <!-- Search Bar at the top of the product grid -->
+        <div class="mb-4">
+            <form class="d-flex" action="/Customer/Home/Index" method="get">
+                <input class="form-control me-2" type="search" id="search" placeholder="Search products..." aria-label="Search" name="query">
+                <button class="btn btn-outline-success rounded-pill" type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Grid for displaying products -->
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @foreach (var item in Model)
+            {
+                <div class="col mb-5">
+                    <div class="card h-100 shadow-sm">
+                        <!-- Product image -->
+                        <a asp-action="Details" asp-route-ProductId="@item.Id"><img class="card-img-top" src="~/@item.Img" alt="Product Image" width="450" height="300" /></a>
+
+                        <!-- Product details -->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name -->
+                                <h5 class="fw-bolder">@item.Name</h5>
+                                <!-- Product price -->
+                                $@item.Price
+                            </div>
+                        </div>
+
+                        <!-- Button to add the product to the cart -->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto rounded-pill" href="#">Add To Cart</a></div>
+                        </div>
+                    </div>
+                </div>
+            }
+            }
+        </div>
+    </div>
+</section>
+
+<!-- jQuery UI Autocomplete functionality for the search bar -->
+<script>
+    $(function () {
+        $("#search").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Customer/Home/GetProductSuggestions", // Back-end action to fetch suggestions
+                    dataType: "json",
+                    data: {
+                        term: request.term
+                    },
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            minLength: 1, // Auto-complete starts after typing one character
+        });
+    });
+</script>

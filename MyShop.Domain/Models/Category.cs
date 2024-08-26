@@ -15,7 +15,6 @@ namespace MyShop.Domain.Models
 
         public DateTime CreatedTime { get; set; } = DateTime.Now;
 
-       // public ICollection<Product> Products { get; set; } = new List<Product>(); // Establishes one-to-many relationship
     }
 
 }

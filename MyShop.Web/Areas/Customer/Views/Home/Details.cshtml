@@ -1,0 +1,67 @@
+﻿@model ShoppingCartViewModel
+
+<!-- Main section for displaying detailed information about a single product -->
+<form method="post" asp-action="Details">
+    <section class="py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6">
+                    <!-- Display the main product image -->
+                    <img class="img-fluid d-block mx-auto border mb-5 mb-md-0" src="~/@Model.Product.Img" alt="Product Image">
+                </div>
+                <div class="col-md-6">
+                    <!-- Display the product category, name, price, and description -->
+                    <div class="small mb-1">@Model.Product.Category.Name</div>
+                    <h1 class="display-5 fw-bolder">@Model.Product.Name</h1>
+                    <div class="fs-5 mb-5">
+                        <span class="text-decoration-line-through">$45.00</span>
+                        <span>$@Model.Product.Price</span>
+                    </div>
+                    <p class="lead">@Html.Raw(Model.Product.Description)</p>
+
+                    <!-- Quantity input and add to cart button -->
+                    <div class="d-flex">
+                        <input class="form-control text-center me-3" id="inputQuantity" asp-for="Count" style="max-width: 3rem">
+                        <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                            Add to cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+
+<!-- Section for displaying related products -->
+<section class="py-5 bg-light">
+    <div class="container px-4 px-lg-5">
+        <h2 class="fw-bolder mb-4">Related Products</h2>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @foreach (var relatedProduct in Model.RelatedProducts)
+            {
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Display the related product image -->
+                        <img class="card-img-top" src="~/@relatedProduct.Img" alt="Related Product">
+
+                        <!-- Related product details -->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Related product name -->
+                                <h5 class="fw-bolder">@relatedProduct.Name</h5>
+                                <!-- Related product price -->
+                                $@relatedProduct.Price
+                            </div>
+                        </div>
+
+                        <!-- Button to view the related product's details -->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" asp-action="Details" asp-route-ProductId="@relatedProduct.Id">View Options</a></div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
