@@ -1,0 +1,26 @@
+﻿@page
+@model MyShop.Web.Areas.Identity.Pages.Account.AccessDeniedModel
+@{
+    ViewData["Title"] = "Access denied";
+}
+
+<div class="access-denied-page">
+    <header>
+        <h1 class="text-danger">@ViewData["Title"]</h1>
+        <p class="text-danger">You do not have access to this resource.</p>
+        <img src="~/Images/access-denied_01.jpg" alt="Access Denied" class="access-denied-image" />
+    </header>
+</div>
+
+<style>
+    .access-denied-page {
+        text-align: center;
+        padding: 50px;
+    }
+
+    .access-denied-image {
+        max-width: 35%; /* تم تصغير الحجم إلى 30% */
+        height: auto;
+        margin-top: 20px;
+    }
+</style>

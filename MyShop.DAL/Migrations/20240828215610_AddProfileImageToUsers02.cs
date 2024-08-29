@@ -2,10 +2,10 @@
 
 #nullable disable
 
-namespace MyShop.Web.Migrations
+namespace MyShop.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class JsonIgnore : Migration
+    public partial class AddProfileImageToUsers02 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

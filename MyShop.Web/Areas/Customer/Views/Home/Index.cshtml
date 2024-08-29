@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<Product>
-
+@{
+    ViewData["ShowNavbar"] = true;
+}
 <!-- Main section for displaying the product listing and search functionality -->
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
@@ -36,7 +38,6 @@
                         </div>
                     </div>
                 </div>
-            }
             }
         </div>
     </div>

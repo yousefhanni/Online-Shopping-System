@@ -1,0 +1,28 @@
+﻿@page
+@model LockoutModel
+@{
+    ViewData["Title"] = "Locked out";
+}
+
+<div class="lockout-page">
+    <header>
+        <h1 class="text-danger">@ViewData["Title"]</h1>
+        <p class="text-danger">
+            Your account has been temporarily locked due to multiple unsuccessful login attempts. Please try again after 30 minutes.
+        </p>
+        <img src="~/Images/Locked.jpg" alt="Locked out" class="lockout-image" />
+    </header>
+</div>
+
+<style>
+    .lockout-page {
+        text-align: center;
+        padding: 50px;
+    }
+
+    .lockout-image {
+        max-width: 35%;
+        height: auto;
+        margin-top: 20px;
+    }
+</style>
