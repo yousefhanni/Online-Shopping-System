@@ -1,9 +1,8 @@
 ﻿using MyShop.Domain.Models;
 using MyShop.Domain.Repositories.Contract;
 using Myshop.DAL.Data;
-using MyShop.DataAccess.Implementation;
 
-namespace myshop.DataAccess.Implementation
+namespace MyShop.DAL.Repositories.Implementation
 {
     public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
     {

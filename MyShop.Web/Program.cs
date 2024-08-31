@@ -2,8 +2,10 @@ using Microsoft.EntityFrameworkCore;
 using Myshop.DAL.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
-using myshop.Utilities;
 using MyShop.Domain.Models;
+using MyShop.Utilities;
+using MyShop.DAL.Repositories.Implementation;
+using Stripe;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +15,8 @@ builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 
 builder.Services.AddDbContext<ApplicationDbContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.Configure<StripeData>(builder.Configuration.GetSection("stripe"));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
@@ -51,6 +55,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+StripeConfiguration.ApiKey = builder.Configuration.GetSection("stripe:Secretkey").Get<string>();
 
 app.UseAuthentication();
 

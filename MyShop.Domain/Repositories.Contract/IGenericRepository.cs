@@ -21,6 +21,6 @@ namespace MyShop.Domain.Repositories.Contract
 		//_Context.Categories.Remove(category);
 		Task Remove(T entity);
 
-        void RemoveRange(IEnumerable<T> entities);
+        Task RemoveRangeAsync(IEnumerable<T> entities);
     }
 }

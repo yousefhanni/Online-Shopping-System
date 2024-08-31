@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Myshop.DAL.Data;
 using MyShop.Domain.Repositories.Contract;
 
-namespace MyShop.DataAccess.Implementation
+namespace MyShop.DAL.Repositories.Implementation
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
@@ -72,9 +72,10 @@ namespace MyShop.DataAccess.Implementation
         }
 
 
-        public void RemoveRange(IEnumerable<T> entities)
+        public async Task RemoveRangeAsync(IEnumerable<T> entities)
         {
             _dbSet.RemoveRange(entities);
+            await _context.SaveChangesAsync(); // حفظ التغييرات
         }
     }
 }

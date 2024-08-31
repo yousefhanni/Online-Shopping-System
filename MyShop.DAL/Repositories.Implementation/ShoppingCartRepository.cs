@@ -1,5 +1,4 @@
 ﻿    using Myshop.DAL.Data;
-    using MyShop.DataAccess.Implementation;
     using MyShop.Domain.Models;
     using MyShop.Domain.Repositories.Contract;
 

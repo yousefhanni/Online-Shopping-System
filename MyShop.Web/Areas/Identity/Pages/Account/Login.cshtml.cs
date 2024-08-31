@@ -105,6 +105,8 @@ namespace MyShop.Web.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
 
+            _logger.LogInformation($"Initial returnUrl: {returnUrl}");
+
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             if (ModelState.IsValid)
@@ -112,18 +114,21 @@ namespace MyShop.Web.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _logger.LogInformation("User logged in successfully.");
 
                     // Ensure returnUrl contains the ProductId
                     if (!string.IsNullOrEmpty(returnUrl) && !returnUrl.Contains("ProductId"))
                     {
-                        // Retrieve the ProductId from the session or context
                         var productId = HttpContext.Session.GetInt32("CurrentProductId");
-                        if (productId.HasValue)
+                        _logger.LogInformation($"ProductId from session: {productId}");
+
+                        if (productId.HasValue && productId != 0)
                         {
                             returnUrl = Url.Action("Details", "Home", new { area = "Customer", ProductId = productId.Value });
+                            _logger.LogInformation($"Modified returnUrl: {returnUrl}");
                         }
                     }
+
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -144,6 +149,8 @@ namespace MyShop.Web.Areas.Identity.Pages.Account
 
             return Page();
         }
+
+
 
     }
 }

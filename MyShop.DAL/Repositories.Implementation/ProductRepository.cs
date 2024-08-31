@@ -1,11 +1,10 @@
 ﻿using Myshop.DAL.Data;
-using MyShop.DataAccess.Implementation;
 using MyShop.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using MyShop.Domain.Repositories.Contract;
 
-namespace myshop.DataAccess.Implementation
+namespace MyShop.DAL.Repositories.Implementation
 {
     public class ProductRepository : GenericRepository<Product>, IProductRepository
     {
