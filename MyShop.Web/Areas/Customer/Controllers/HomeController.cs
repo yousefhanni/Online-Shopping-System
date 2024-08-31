@@ -1,5 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using MyShop.Domain.Models;
 using MyShop.Domain.ViewModels;
+using MyShop.Utilities;
+using System.Linq;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace MyShop.Web.Areas.Customer.Controllers
 {
@@ -34,34 +40,92 @@ namespace MyShop.Web.Areas.Customer.Controllers
 
             return View(products);
         }
-
-        // Action to display the details of a specific product, including related products in the same category
+        [HttpGet]
         public async Task<IActionResult> Details(int ProductId)
         {
-            // Fetch the main product based on the provided ID
-            var product = await _unitofwork.Product.GetItemAsync(p => p.Id == ProductId, includeProperties: "Category");
+            var product = await _unitofwork.Product.GetItemAsync(v => v.Id == ProductId, includeProperties: "Category");
 
             if (product == null)
             {
-                return NotFound();
+                return NotFound(); // Return a 404 page if the product is not found
             }
 
-            // Fetch related products from the same category, excluding the current product
             var relatedProducts = await _unitofwork.Product.GetAllAsync(
-                p => p.CategoryId == product.CategoryId && p.Id != product.Id,
-                includeProperties: "Category"
-            );
+                p => p.CategoryId == product.CategoryId && p.Id != product.Id, includeProperties: "Category");
 
-            // Create the view model to pass to the view, including the main product and related products
-            ShoppingCartViewModel cartViewModel = new ShoppingCartViewModel()
+            ShoppingCart obj = new ShoppingCart()
             {
+                ProductId = ProductId,
                 Product = product,
                 Count = 1,
                 RelatedProducts = relatedProducts.ToList()
             };
 
-            return View(cartViewModel);
+            // Store the ProductId in session to use after login
+            HttpContext.Session.SetInt32("CurrentProductId", ProductId);
+
+            return View(obj);
         }
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[Authorize]
+        //public async Task<IActionResult> Details(ShoppingCart shoppingCart)
+        //{
+        //    var claimsIdentity = (ClaimsIdentity)User.Identity;
+        //    var claim = claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier);
+        //    shoppingCart.ApplicationUserId = claim.Value;
+
+
+        //    ShoppingCart shoppingCartObj = await _unitofwork._ShoppingCartRepository.GetItemAsync(
+        //        s => s.ApplicationUserId == claim.Value && s.ProductId == shoppingCart.ProductId);
+
+        //    if (shoppingCartObj == null)
+        //    {
+        //        await _unitofwork._ShoppingCartRepository.AddAsync(shoppingCart);
+        //        await _unitofwork.CompleteAsync();
+        //        string userSessionKey = $"{AppConstants.SessionKey}_{claim.Value}";
+        //        HttpContext.Session.SetInt32(userSessionKey, _unitofwork._ShoppingCartRepository.GetAllAsync(u => u.ApplicationUserId == claim.Value).Result.Count());
+        //    }
+
+        //    else
+        //    {
+        //        _unitofwork._ShoppingCartRepository.IncreaseCount(shoppingCartObj, shoppingCart.Count);
+        //        await _unitofwork.CompleteAsync();
+
+        //    }
+
+        //    return RedirectToAction("Index");
+        //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public async Task<IActionResult> Details(ShoppingCart shoppingCart)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier);
+            shoppingCart.ApplicationUserId = claim.Value;
+
+            ShoppingCart shoppingCartObj = await _unitofwork._ShoppingCartRepository.GetItemAsync(
+                s => s.ApplicationUserId == claim.Value && s.ProductId == shoppingCart.ProductId);
+
+            if (shoppingCartObj == null)
+            {
+                await _unitofwork._ShoppingCartRepository.AddAsync(shoppingCart);
+                await _unitofwork.CompleteAsync();
+                string userSessionKey = $"{AppConstants.SessionKey}_{claim.Value}";
+                HttpContext.Session.SetInt32(userSessionKey, _unitofwork._ShoppingCartRepository.GetAllAsync(u => u.ApplicationUserId == claim.Value).Result.Count());
+            }
+            else
+            {
+                _unitofwork._ShoppingCartRepository.IncreaseCount(shoppingCartObj, shoppingCart.Count);
+                await _unitofwork.CompleteAsync();
+            }
+
+            return RedirectToAction("Index");
+        }
+
 
         // Action to provide search suggestions via AJAX for the autocomplete feature
         [HttpGet]

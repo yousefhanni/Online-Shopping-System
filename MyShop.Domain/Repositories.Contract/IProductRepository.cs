@@ -1,8 +1,6 @@
 ﻿using MyShop.Domain.Models;
-using MyShop.Domain.Repositories.Contract;
-using System.Threading.Tasks;
 
-namespace myshop.Entities.Repositories
+namespace MyShop.Domain.Repositories.Contract
 {
     public interface IProductRepository : IGenericRepository<Product>
     {

@@ -8,8 +8,8 @@
         <!-- Search Bar at the top of the product grid -->
         <div class="mb-4">
             <form class="d-flex" action="/Customer/Home/Index" method="get">
-                <input class="form-control me-2" type="search" id="search" placeholder="Search products..." aria-label="Search" name="query">
-                <button class="btn btn-outline-success rounded-pill" type="submit">Search</button>
+                <input class="form-control me-2 rounded-pill" type="search" id="search" placeholder="Search products..." aria-label="Search" name="query">
+                <button class="btn btn-search rounded-pill" type="submit">Search</button>
             </form>
         </div>
 
@@ -18,9 +18,11 @@
             @foreach (var item in Model)
             {
                 <div class="col mb-5">
-                    <div class="card h-100 shadow-sm">
-                        <!-- Product image -->
-                        <a asp-action="Details" asp-route-ProductId="@item.Id"><img class="card-img-top" src="~/@item.Img" alt="Product Image" width="450" height="300" /></a>
+                    <div class="card h-100 shadow-sm" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
+                        <!-- Product image with object-fit cover to maintain aspect ratio -->
+                        <a asp-action="Details" asp-route-ProductId="@item.Id">
+                            <img class="card-img-top" src="~/@item.Img" alt="Product Image" style="height: 200px; width:100%; object-fit: contain;">
+                        </a>
 
                         <!-- Product details -->
                         <div class="card-body p-4">
@@ -28,13 +30,13 @@
                                 <!-- Product name -->
                                 <h5 class="fw-bolder">@item.Name</h5>
                                 <!-- Product price -->
-                                $@item.Price
+                                <p class="text-muted">$@item.Price</p>
                             </div>
                         </div>
 
                         <!-- Button to add the product to the cart -->
-                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-dark mt-auto rounded-pill" href="#">Add To Cart</a></div>
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
+                            <a class="btn btn-outline-dark mt-auto rounded-pill" href="#">Add To Cart</a>
                         </div>
                     </div>
                 </div>
@@ -63,3 +65,83 @@
         });
     });
 </script>
+<style>
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 10px; /* Add rounded corners */
+        overflow: hidden; /* Prevent content overflow */
+        position: relative; /* Ensure proper stacking context */
+    }
+
+        .card:hover {
+            transform: translateY(-5px); /* Lift the card slightly */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1); /* Apply a soft shadow */
+        }
+
+    .card-img-top {
+        height: 200px;
+        width: 100%;
+        object-fit: contain;
+    }
+
+        .card-img-top:hover {
+            transform: scale(1.05); /* Slightly enlarge image on hover */
+        }
+
+    .card-footer {
+        border-top: 1px solid #ddd; /* Add a subtle border to the top of the footer */
+        background-color: white;
+    }
+
+    .btn-outline-dark {
+        color: #007bff;
+        border-color: #007bff;
+        border-width: 2px;
+        padding: 10px 20px;
+        font-weight: bold;
+    }
+
+        .btn-outline-dark:hover {
+            background-color: #007bff;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+    .form-control {
+        border-radius: 50px;
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+    }
+
+        .form-control:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        }
+
+    .btn-search {
+        border-radius: 50px;
+        color: white;
+        background-color: #007bff;
+        border: none;
+    }
+
+        .btn-search:hover {
+            background-color: #0056b3;
+        }
+
+    .card h5 {
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    .card p {
+        font-size: 1rem;
+        color: #6c757d; /* Slightly lighter color for the price */
+    }
+
+    .row {
+        margin-bottom: 30px;
+    }
+</style>

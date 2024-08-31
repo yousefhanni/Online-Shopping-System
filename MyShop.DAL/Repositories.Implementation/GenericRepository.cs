@@ -20,10 +20,9 @@ namespace MyShop.DataAccess.Implementation
             _dbSet = _context.Set<T>();
         }
 
-        public void Add(T entity)
+        public async Task AddAsync(T entity)
         {
-            //Products.Add(product);
-            _dbSet.Add(entity);
+            await _dbSet.AddAsync(entity);
         }
 
         public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? predicate = null, string? includeProperties = null)
@@ -32,26 +31,11 @@ namespace MyShop.DataAccess.Implementation
 
             if (predicate != null) // if True => Condition(Where)
             {
-                // query = Products.Where(x => x.Id == id)
                 query = query.Where(predicate);
             }
 
             if (includeProperties != null)
             {
-                #region Possible Scenarios
-                // query = Products.Where(x => x.Id == id) 
-                // if predicate is not null and includeProperties is null
-
-                // query = Products.Where(x => x.Id == id).Include("Category").ToList(); 
-                // if predicate is not null and includeProperties is not null
-
-                // query = Products.Include("Category,Logos,Users").ToList(); 
-                // if predicate is null and includeProperties is not null
-
-                // query = Products.ToList(); 
-                // if predicate is null and includeProperties is null
-                #endregion
-
                 foreach (var property in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     query = query.Include(property);
@@ -59,7 +43,7 @@ namespace MyShop.DataAccess.Implementation
             }
 
             return await query.ToListAsync();
-            }
+        }
 
         public async Task<T> GetItemAsync(Expression<Func<T, bool>>? predicate = null, string? includeProperties = null)
         {
@@ -81,10 +65,12 @@ namespace MyShop.DataAccess.Implementation
             return await query.SingleOrDefaultAsync();
         }
 
-        public void Remove(T entity)
+        public async Task Remove(T entity)
         {
             _dbSet.Remove(entity);
+            await Task.CompletedTask;
         }
+
 
         public void RemoveRange(IEnumerable<T> entities)
         {

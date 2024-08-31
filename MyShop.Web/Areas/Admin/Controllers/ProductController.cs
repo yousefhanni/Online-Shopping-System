@@ -77,7 +77,7 @@ namespace MyShop.Web.Areas.Admin.Controllers
                 }
 
                 // Add the new product to the database
-                _unitOfWork.Product.Add(productVM.Product);
+                await  _unitOfWork.Product.AddAsync(productVM.Product);
                 await _unitOfWork.CompleteAsync();
                 TempData["Create"] = "Item has Created Successfully";
                 return RedirectToAction("Index");

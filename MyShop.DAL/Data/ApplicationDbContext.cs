@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using MyShop.Domain.Models;
+using MyShop.Domain.ViewModels;
 
 namespace Myshop.DAL.Data
 {
@@ -10,6 +11,8 @@ namespace Myshop.DAL.Data
             : base(options)
         {
         }
+
+        public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Category> Categories { get; set; } 

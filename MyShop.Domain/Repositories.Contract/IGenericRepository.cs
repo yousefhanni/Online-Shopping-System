@@ -16,10 +16,10 @@ namespace MyShop.Domain.Repositories.Contract
         Task<T> GetItemAsync(Expression<Func<T, bool>>? predicate = null, string? includeProperties = null);
 
         //_Context.Categories.Add(category);
-        void Add(T entity);
+        Task AddAsync(T entity);
 
-        //_Context.Categories.Remove(category);
-        void Remove(T entity);
+		//_Context.Categories.Remove(category);
+		Task Remove(T entity);
 
         void RemoveRange(IEnumerable<T> entities);
     }

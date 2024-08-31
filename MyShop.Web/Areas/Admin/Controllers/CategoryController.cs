@@ -37,7 +37,7 @@ namespace MyShop.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Category.Add(category);
+                 await _unitOfWork.Category.AddAsync(category);
                 await _unitOfWork.CompleteAsync();
                 TempData["Create"] = "Item has been created successfully.";
                 return RedirectToAction(nameof(Index));

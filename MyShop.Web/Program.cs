@@ -32,6 +32,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddSingleton<IEmailSender, EmailSender>();
 
+
+// Enables in-memory caching for storing session data, essential for maintaining the shopping cart state.
+builder.Services.AddDistributedMemoryCache();
+// Enables session management to track the user's shopping cart and other session-based data.
 builder.Services.AddSession();
 
 var app = builder.Build();
@@ -48,9 +52,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseSession(); // Make sure the session is used before authentication
 app.UseAuthentication();
+
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapRazorPages();
 
