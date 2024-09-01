@@ -1,6 +1,6 @@
 ﻿var dtble;
 $(document).ready(function () {
-    loaddata();
+    loaddata(); 
 });
 
 function loaddata() {

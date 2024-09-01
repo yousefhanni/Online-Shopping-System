@@ -31,7 +31,7 @@ namespace MyShop.Domain.Models
         public string? PaymentStatus { get; set; }
 
         // Tracking number provided by the carrier for the shipped order
-        public string? TrakcingNumber { get; set; } // Note: There's a typo here; should be "TrackingNumber"
+        public string? TrackingNumber { get; set; } // Note: There's a typo here; should be "TrackingNumber"
 
         // Carrier responsible for delivering the order, e.g., "FedEx", "UPS", etc.
         public string? Carrier { get; set; }
