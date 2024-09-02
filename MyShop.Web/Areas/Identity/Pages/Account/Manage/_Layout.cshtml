@@ -1,5 +1,12 @@
-﻿@{
-    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout !=  null)
+﻿<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - MyShop</title>
+    <link rel="stylesheet" href="~/css/Profile.css" />
+</head>
+
+@{
+    if (ViewData.TryGetValue("ParentLayout", out var parentLayout) && parentLayout != null)
     {
         Layout = parentLayout.ToString();
     }
@@ -9,18 +16,18 @@
     }
 }
 
-
 <div class="container">
-    <br /> 
-    <h4>Manage your account</h4>
-    <hr />
+    <h4 class="my-4 text-primary">Manage your account</h4>
     <div class="row">
         <div class="col-md-3">
             <partial name="_ManageNav" />
         </div>
         <div class="col-md-9">
-            @RenderBody()
-            <br />
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    @RenderBody()
+                </div>
+            </div>
         </div>
     </div>
 </div>

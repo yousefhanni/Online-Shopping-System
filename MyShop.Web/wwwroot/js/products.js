@@ -10,23 +10,23 @@ function loaddata() {
         },
         "columns": [
             { "data": "name" },
-            { "data": "description" },
+            {
+                "data": "description",
+                "render": function (data, type, row) {
+                    return `<span title="${data}">${data.length > 50 ? data.substring(0, 50) + '...' : data}</span>`;
+                }
+            },
             { "data": "price" },
             { "data": "category.name" },
             {
                 "data": "id",
                 "render": function (data) {
                     return `
-                            <a href="/Admin/Product/Edit/${data}" class="btn btn-success">Edit</a>
-                            <a onClick=DeleteItem("/Admin/Product/Delete/${data}") class="btn btn-danger">Delete</a>
-                            `
-
+                        <a href="/Admin/Product/Edit/${data}" class="btn btn-success">Edit</a>
+                        <a onClick=DeleteItem("/Admin/Product/Delete/${data}") class="btn btn-danger">Delete</a>
+                    `;
                 }
-
             }
-
-
-
         ]
     });
 }
@@ -49,13 +49,11 @@ function DeleteItem(url) {
                     if (data.success) {
                         toastr.success(data.message);
                         dtble.ajax.reload();
-                    }
-                    else {
+                    } else {
                         toastr.error(data.message);
                     }
                 }
-            })
+            });
         }
-    })
+    });
 }
-

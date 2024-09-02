@@ -79,9 +79,21 @@
             @if (Model.CartsList.Count() != 0)
             {
                 <div class="card-footer">
-                    <div class="card-footer row">
-                        <div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6">
-                            <a asp-action="Summary" class="btn btn-primary form-control">Checkout</a>
+                    <div class="row">
+                        <div class="col-sm-12 col-lg-4 offset-lg-4">
+                            <a asp-action="Summary" class="btn btn-primary btn-block" style="
+                                width: 100%;
+                                padding: 15px 0;
+                                font-size: 18px;
+                                font-weight: bold;
+                                text-align: center;
+                                background-color: #007bff;
+                                color: white;
+                                border-radius: 10px;
+                                transition: all 0.3s ease;
+                            ">
+                                Checkout
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -91,3 +103,18 @@
     <br />
 </form>
 
+@section Scripts {
+    <script>
+        document.querySelector('.btn-block').addEventListener('mouseover', function () {
+            this.style.backgroundColor = '#0056b3';
+            this.style.transform = 'translateY(-2px)';
+            this.style.boxShadow = '0 4px 10px rgba(0, 123, 255, 0.3)';
+        });
+
+        document.querySelector('.btn-block').addEventListener('mouseout', function () {
+            this.style.backgroundColor = '#007bff';
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+        });
+    </script>
+}

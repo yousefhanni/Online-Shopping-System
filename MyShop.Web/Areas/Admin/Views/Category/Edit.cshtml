@@ -36,4 +36,11 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        tinymce.init({
+            selector: '#mytextarea',
+            width: '100%', // عرض المحرر
+            height: 300 // ارتفاع المحرر
+        });
+    </script>
 }

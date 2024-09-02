@@ -37,7 +37,7 @@ namespace MyShop.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                 await _unitOfWork.Category.AddAsync(category);
+                await _unitOfWork.Category.AddAsync(category);
                 await _unitOfWork.CompleteAsync();
                 TempData["Create"] = "Item has been created successfully.";
                 return RedirectToAction(nameof(Index));
@@ -51,7 +51,10 @@ namespace MyShop.Web.Areas.Admin.Controllers
         {
             var category = await _unitOfWork.Category.GetItemAsync(c => c.Id == id);
             if (category == null)
+            {
+                TempData["Error"] = "Category not found.";
                 return NotFound();
+            }
 
             return View(category);
         }
@@ -63,14 +66,21 @@ namespace MyShop.Web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _unitOfWork.Category.UpdateAsync(category);
-                await _unitOfWork.CompleteAsync();
-                TempData["Update"] = "Item has been updated successfully.";
+                try
+                {
+                    await _unitOfWork.Category.UpdateAsync(category);
+                    await _unitOfWork.CompleteAsync();
+                    TempData["Update"] = "Item has been updated successfully.";
+                }
+                catch (Exception ex)
+                {
+                    TempData["Error"] = "An error occurred while updating the category.";
+                    return View(category);
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(category);
         }
-
 
         // GET: Category/Delete/{id}
         [HttpGet]
@@ -78,7 +88,10 @@ namespace MyShop.Web.Areas.Admin.Controllers
         {
             var category = await _unitOfWork.Category.GetItemAsync(c => c.Id == id);
             if (category == null)
+            {
+                TempData["Error"] = "Category not found.";
                 return NotFound();
+            }
 
             return View(category);
         }
@@ -90,11 +103,21 @@ namespace MyShop.Web.Areas.Admin.Controllers
         {
             var category = await _unitOfWork.Category.GetItemAsync(c => c.Id == id);
             if (category == null)
+            {
+                TempData["Error"] = "Category not found.";
                 return NotFound();
+            }
 
-            _unitOfWork.Category.Remove(category);
-            await _unitOfWork.CompleteAsync();
-            TempData["Delete"] = "Item has been deleted successfully.";
+            try
+            {
+                _unitOfWork.Category.Remove(category);
+                await _unitOfWork.CompleteAsync();
+                TempData["Delete"] = "Item has been deleted successfully.";
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = "An error occurred while deleting the category.";
+            }
 
             return RedirectToAction(nameof(Index));
         }

@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Product>
-@{
-    ViewData["ShowNavbar"] = true;
-}
+@using X.PagedList;
+@using X.Web.PagedList
+
 <!-- Main section for displaying the product listing and search functionality -->
 <section class="py-5">
     <div class="container px-4 px-lg-5 mt-5">
@@ -9,7 +9,7 @@
         <div class="mb-4">
             <form class="d-flex" action="/Customer/Home/Index" method="get">
                 <input class="form-control me-2 rounded-pill" type="search" id="search" placeholder="Search products..." aria-label="Search" name="query">
-                <button class="btn btn-search rounded-pill" type="submit">Search</button>
+                <button class="btn btn-outline-dark mt-auto rounded-pill" type="submit">Search</button>
             </form>
         </div>
 
@@ -36,12 +36,25 @@
 
                         <!-- Button to add the product to the cart -->
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent text-center">
-                            <a class="btn btn-outline-dark mt-auto rounded-pill" href="#">Add To Cart</a>
+                            <a asp-action="Details" asp-route-ProductId="@item.Id" class="btn btn-outline-dark mt-auto rounded-pill">View Details</a>
                         </div>
                     </div>
                 </div>
             }
         </div>
+
+        <div class="container px-4 px-lg-5 mt-5">
+            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }),
+                         new PagedListRenderOptions
+                {
+                    LiElementClasses = new string[] { "page-item" },
+                    PageClasses = new string[] { "page-link" }
+                })
+            </div>
+        </div>
+
     </div>
 </section>
 
@@ -122,13 +135,20 @@
 
     .btn-search {
         border-radius: 50px;
-        color: white;
-        background-color: #007bff;
-        border: none;
+        color: #007bff;
+        border-color: #007bff;
+        border-width: 2px;
+        padding: 10px 20px;
+        font-weight: bold;
+        background-color: transparent;
+        transition: all 0.3s ease;
     }
 
         .btn-search:hover {
-            background-color: #0056b3;
+            background-color: #007bff;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+            transform: scale(1.05);
         }
 
     .card h5 {

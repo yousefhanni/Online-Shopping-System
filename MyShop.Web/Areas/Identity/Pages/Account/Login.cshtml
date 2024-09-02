@@ -5,22 +5,18 @@
     ViewData["ShowNavbar"] = true;
 }
 
-<h1>@ViewData["Title"]</h1>
-<style>
-    .imgDiv {
-        background-size: 100% 100%;
-    }
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewData["Title"] - MyShop</title>
+    <link rel="stylesheet" href="~/css/Profile.css?v=1.0" />
+</head>
 
-    .loginImg {
-        height: auto;
-        max-width: 100%;
-    }
-</style>
-<section class="py-5">
+<section class="section-background py-5">
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row">
             <div class="col-md-5">
-                <section>
+                <div class="form-container">
                     <form id="account" method="post">
                         <h2>Use a local account to log in.</h2>
                         <hr />
@@ -56,12 +52,11 @@
                             </p>
                         </div>
                     </form>
-                </section>
+                </div>
             </div>
             <div class="col-md-6 col-md-offset-2">
                 <section>
-
-                    <div class="imgDiv">
+                    <div class="imgdiv">
                         <img class="loginImg" src="~/img/Login@L.jpg" />
                     </div>
                 </section>

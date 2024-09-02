@@ -1,0 +1,6 @@
+#mytable td:nth-child(2) {
+    max-width: 300px; /* Set a fixed width for the description column */
+    white-space: nowrap; /* Prevent text from wrapping to the next line */
+    overflow: hidden; /* Hide the overflowed text */
+    text-overflow: ellipsis; /* Show "..." for overflowed text */
+}

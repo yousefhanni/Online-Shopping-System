@@ -5,8 +5,8 @@ using MyShop.Domain.ViewModels;
 using MyShop.Utilities;
 using System.Linq;
 using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
+using X.PagedList;
+using X.PagedList.Extensions;
 
 namespace MyShop.Web.Areas.Customer.Controllers
 {
@@ -23,9 +23,10 @@ namespace MyShop.Web.Areas.Customer.Controllers
             _logger = logger;
         }
 
-        // Action to display the list of products, with optional filtering by search query and category
-        public async Task<IActionResult> Index(string query, string category)
+        // Endpoint to display a paginated list of products with optional filtering by search query and category    
+        public async Task<IActionResult> Index(string query, string category, int? page)
         {
+            // Load all products including their associated category
             var products = await _unitofwork.Product.GetAllAsync(null, "Category");
 
             // Filter products by search query if provided
@@ -41,8 +42,17 @@ namespace MyShop.Web.Areas.Customer.Controllers
                                                 p.Category.Name.Equals(category, StringComparison.OrdinalIgnoreCase)).ToList();
             }
 
-            return View(products);
+            // Determine the current page number, defaulting to 1 if not provided
+            var PageNumber = page ?? 1;
+            int PageSize = 8;
+
+            // Apply pagination to the filtered product list
+            var pagedProducts = products.ToPagedList(PageNumber, PageSize);
+
+            return View(pagedProducts);
         }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]

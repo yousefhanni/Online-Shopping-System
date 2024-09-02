@@ -1,18 +1,18 @@
-﻿::-webkit-scrollbar {
+﻿/*::-webkit-scrollbar {
     width: 8px;
-}
+}*/
 /* Track */
-::-webkit-scrollbar-track {
+/*::-webkit-scrollbar-track {
     background: #f1f1f1;
-}
+}*/
 
 /* Handle */
-::-webkit-scrollbar-thumb {
+/*::-webkit-scrollbar-thumb {
     background: #888;
-}
+}*/
 
     /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
+    /*::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
 
@@ -300,5 +300,400 @@ tr.text-muted td {
     body {
         width: fit-content;
     }
+}*/
+
+/* Custom scrollbar styles */
+/*::-webkit-scrollbar {
+    width: 8px;
+}*/
+
+/* Track */
+/*::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}*/
+
+/* Handle */
+/*::-webkit-scrollbar-thumb {
+    background: #888;
+}*/
+
+    /* Handle on hover */
+    /*::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }*/
+
+/* Basic styles */
+/** {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    background-color: #eee;
+}
+
+nav, .wrapper {
+    padding: 10px 50px;
+}*/
+
+/* Navbar styles */
+/*.navbar {
+    padding: 10px 50px;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-weight: 600;
+    color: #fff !important;
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1);
+}*/
+
+/* Form and summary styling */
+/*#details {
+    padding: 30px 50px;
+    min-height: 300px;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+.form-group .d-flex {
+    border: 1px solid #ddd;
+}
+
+    .form-group .d-flex input {
+        width: 95%;
+    }
+
+    .form-group .d-flex:hover {
+        color: #000;
+        cursor: pointer;
+        border: 1px solid #008000;
+    }
+
+select {
+    width: 100%;
+    padding: 8px 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#cart, #summary {
+    padding: 20px 50px;
+    max-width: 500px;
+}
+
+.h6 {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.item img {
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.item {
+    position: relative;
+}
+
+.number {
+    position: absolute;
+    font-weight: 800;
+    color: #fff;
+    background-color: #0033ff;
+    padding-left: 7px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    width: 25px;
+    height: 25px;
+    top: -5px;
+    right: -5px;
+}
+
+.display-5 {
+    font-size: 1.2rem;
+}
+
+.btn.text-uppercase {
+    border: 1px solid #333;
+    font-weight: 600;
+    border-radius: 0px;
+}
+
+    .btn.text-uppercase:hover {
+        background-color: #333;
+        color: #eee;
+    }
+
+.wrapper {
+    margin-top: 50px;
+}*/
+
+/* Media Queries */
+/*@media(min-width:768px) and (max-width: 991px) {
+    #cart, #summary {
+        max-width: 100%;
+    }
+
+    .wrapper div.h5.large, .wrapper .row + div.text-muted {
+        display: none;
+    }
+
+    .mobile.h5, #mobile {
+        display: block;
+    }
+}
+
+@media(min-width: 576px) and (max-width: 767px) {
+    #cart, #summary {
+        max-width: 100%;
+    }
+
+    .wrapper div.h5.large, .wrapper .row + div.text-muted {
+        display: none;
+    }
+
+    .mobile.h5, #mobile {
+        display: block;
+    }
+
+    .buttons {
+        width: 100%;
+    }
+}
+
+@media(max-width: 575px) {
+    #cart, #summary {
+        max-width: 100%;
+    }
+
+    nav, .wrapper {
+        padding: 10px 30px;
+    }
+
+    #register {
+        width: 100%;
+    }
+}
+
+@media(max-width: 424px) {
+    body {
+        width: fit-content;
+    }
+}
+
+@media(max-width: 375px) {
+    body {
+        width: fit-content;
+    }
+}*/
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+/* Basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #eee;
+}
+
+nav, .wrapper {
+    padding: 10px 50px;
+}
+
+/* Navbar styles */
+.navbar {
+    padding: 10px 50px;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.nav-link {
+    font-weight: 600;
+    color: #fff !important;
+}
+
+.navbar-toggler {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Form and summary styling */
+#details {
+    padding: 30px 50px;
+    min-height: 300px;
+}
+
+input {
+    border: none;
+    outline: none;
+}
+
+.form-group .d-flex {
+    border: 1px solid #ddd;
+}
+
+    .form-group .d-flex input {
+        width: 95%;
+    }
+
+    .form-group .d-flex:hover {
+        color: #000;
+        cursor: pointer;
+        border: 1px solid #008000;
+    }
+
+select {
+    width: 100%;
+    padding: 8px 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#cart, #summary {
+    padding: 20px 50px;
+    max-width: 500px;
+}
+
+.h6 {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.item img {
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.item {
+    position: relative;
+}
+
+.number {
+    position: absolute;
+    font-weight: 800;
+    color: #fff;
+    background-color: #0033ff;
+    padding-left: 7px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    width: 25px;
+    height: 25px;
+    top: -5px;
+    right: -5px;
+}
+
+.display-5 {
+    font-size: 1.2rem;
+}
+
+.btn.text-uppercase {
+    border: 1px solid #333;
+    font-weight: 600;
+    border-radius: 0px;
+}
+
+    .btn.text-uppercase:hover {
+        background-color: #333;
+        color: #eee;
+    }
+
+.wrapper {
+    margin-top: 50px;
+}
+
+/* Media Queries */
+@media(min-width:768px) and (max-width: 991px) {
+    #cart, #summary {
+        max-width: 100%;
+    }
+
+    .wrapper div.h5.large, .wrapper .row + div.text-muted {
+        display: none;
+    }
+
+    .mobile.h5, #mobile {
+        display: block;
+    }
+}
+
+@media(min-width: 576px) and (max-width: 767px) {
+    #cart, #summary {
+        max-width: 100%;
+    }
+
+    .wrapper div.h5.large, .wrapper .row + div.text-muted {
+        display: none;
+    }
+
+    .mobile.h5, #mobile {
+        display: block;
+    }
+
+    .buttons {
+        width: 100%;
+    }
+}
+
+@media(max-width: 575px) {
+    #cart, #summary {
+        max-width: 100%;
+    }
+
+    nav, .wrapper {
+        padding: 10px 30px;
+    }
+
+    #register {
+        width: 100%;
+    }
+}
+
+@media(max-width: 424px) {
+    body {
+        width: fit-content;
+    }
+}
+
+@media(max-width: 375px) {
+    body {
+        width: fit-content;
+    }
+}

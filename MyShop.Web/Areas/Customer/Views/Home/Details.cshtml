@@ -1,9 +1,4 @@
-﻿@model ShoppingCart
-
-@{
-    ViewData["ShowNavbar"] = true;
-    Layout = "~/Views/Shared/_Customer.cshtml";
-}
+﻿ @model ShoppingCart
 
 <form method="post" asp-action="Details">
     <input type="hidden" name="returnUrl" value="@Url.Action("Details", "Home", new { area = "Customer", ProductId = Model.ProductId })" />
@@ -11,11 +6,13 @@
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <input hidden asp-for="ProductId" />
-                <div class="col-md-6">
-                    <img class="card-img-top mb-5 mb-md-0" src="~/@Model.Product.Img" alt="..." width="600" height="700">
+                <div class="col-md-6 mb-4">
+                    <div class="product-image-wrapper">
+                        <img class="product-image" src="~/@Model.Product.Img" alt="..." width="100%" height="auto">
+                    </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="small mb-1">@Model.Product.Category.Name</div>
+                    <div class="small mb-1 text-muted">@Model.Product.Category.Name</div>
                     <h1 class="display-5 fw-bolder">@Model.Product.Name</h1>
                     <div class="fs-5 mb-5">
                         <span class="text-decoration-line-through">$45.00</span>
@@ -24,7 +21,7 @@
                     <p class="lead">@Html.Raw(Model.Product.Description)</p>
                     <div class="d-flex">
                         <input class="form-control text-center me-3" id="inputQuantity" asp-for="Count" style="max-width: 3rem">
-                        <button class="btn btn-outline-dark flex-shrink-0" type="submit">
+                        <button class="btn btn-outline-primary flex-shrink-0" type="submit">
                             <i class="bi-cart-fill me-1"></i>
                             Add to cart
                         </button>
@@ -45,7 +42,6 @@
             {
                 <div class="col mb-5" style="padding-bottom: 20px;">
                     <div class="card h-100 shadow-sm" style="transition: transform 0.3s ease, box-shadow 0.3s ease;">
-                        <!-- Image without hover effect -->
                         <a href='@Url.Action("Details", "Home", new { area = "Customer", ProductId = relatedProduct.Id })'>
                             <img class="card-img-top" src="~/@relatedProduct.Img" alt="..." style="height: 250px; object-fit: cover;">
                         </a>
@@ -66,33 +62,82 @@
 </section>
 
 <style>
-    .card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    .card {
+        background-color: #f9f9f9; /* Light background color */
+        border-radius: 10px; /* Rounded corners */
+        border: 1px solid #ddd; /* Subtle border */
     }
 
-    .card-img-top {
-        transform: none;
-        transition: none;
+    .card-body {
+        padding: 2rem; /* Better internal padding */
     }
 
-    .btn-outline-dark {
-        color: #007bff;
-        border-color: #007bff;
-        border-width: 2px;
-        padding: 10px 20px;
+    .btn-outline-primary {
+        border-radius: 20px; /* Rounded button corners */
+        background: linear-gradient(to right, #0066ff, #33ccff); /* Gradient color */
+        transition: background 0.3s ease, transform 0.3s ease;
+        color: white;
         font-weight: bold;
     }
 
-        .btn-outline-dark:hover {
-            background-color: #007bff;
+        .btn-outline-primary:hover {
+            background: linear-gradient(to right, #0055cc, #29a3a3); /* Hover effect */
+            transform: translateY(-2px); /* Lift the button slightly on hover */
             color: white;
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
-            transform: scale(1.05);
-            transition: all 0.3s ease;
         }
+
+    .product-image-wrapper {
+        padding: 10px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-image {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
 
     .text-muted {
         color: #6c757d;
     }
+
+    /* Related Products Section */
+    .related-products .card {
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .related-products .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+    .related-products .card-img-top {
+        height: 200px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+        .related-products .card-img-top:hover {
+            transform: scale(1.05);
+        }
+
+    .related-products .card-body {
+        padding: 15px;
+    }
+
+    .related-products .btn-outline-dark {
+        border-radius: 50px;
+        padding: 10px 20px;
+    }
+
+        .related-products .btn-outline-dark:hover {
+            background-color: #007bff;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        }
+
 </style>

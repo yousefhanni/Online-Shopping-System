@@ -10,29 +10,28 @@
 <table class="table table-hover" width="100%">
     <thead class="text-bold" style="background-color: #f8f9fa;">
         <tr>
-            <td style="width: 20%;">Name</td>
-            <td style="width: 50%; word-wrap: break-word; word-break: break-word; overflow-wrap: break-word;">Description</td>
-            <td style="width: 20%;">Date Created</td>
-            <td style="width: 10%;">Actions</td>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Date Created</td>
+            <td>Actions</td>
         </tr>
     </thead>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@item.Name</td>
-            <td style="word-wrap: break-word; word-break: break-word; overflow-wrap: break-word;">@item.Description</td>
-            <td>@item.CreatedTime</td>
-            <td style="text-align: center; white-space: nowrap;">
-                <a class="btn btn-success btn-sm" style="margin-right: 5px;" asp-controller="Category" asp-action="Edit" asp-route-id="@item.Id">
-                    <i class="fas fa-edit"></i> Edit
-                </a>
-                <a class="btn btn-danger btn-sm" asp-controller="Category" asp-action="Delete" asp-route-id="@item.Id">
-                    <i class="fas fa-trash"></i> Delete
-                </a>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="5"></td> <!-- This will create an empty cell spanning all columns -->
-        </tr>
-    }
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@Html.Raw(item.Description)</td>
+                <td>@item.CreatedTime</td>
+                <td>
+                    <a class="btn btn-success btn-sm" style="margin-right: 5px;" asp-controller="Category" asp-action="Edit" asp-route-id="@item.Id">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <a class="btn btn-danger btn-sm" asp-controller="Category" asp-action="Delete" asp-route-id="@item.Id">
+                        <i class="fas fa-trash"></i> Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
