@@ -252,7 +252,7 @@ namespace MyShop.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("MyShop.Domain.Models.OrderDetails", b =>
@@ -281,7 +281,7 @@ namespace MyShop.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails");
+                    b.ToTable("OrderDetails", (string)null);
                 });
 
             modelBuilder.Entity("MyShop.Domain.Models.OrderHeader", b =>
@@ -345,7 +345,7 @@ namespace MyShop.DAL.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("OrderHeaders");
+                    b.ToTable("OrderHeaders", (string)null);
                 });
 
             modelBuilder.Entity("MyShop.Domain.Models.Product", b =>
@@ -377,7 +377,7 @@ namespace MyShop.DAL.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("MyShop.Domain.Models.ShoppingCart", b =>
@@ -404,7 +404,7 @@ namespace MyShop.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ShoppingCarts");
+                    b.ToTable("ShoppingCarts", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

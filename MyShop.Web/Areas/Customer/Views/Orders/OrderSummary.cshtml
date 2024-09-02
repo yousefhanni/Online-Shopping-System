@@ -1,0 +1,89 @@
+﻿@model MyShop.Domain.Models.OrderHeader
+<div class="container mt-5">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h2 class="text-center mb-0">Order Summary</h2>
+        </div>
+        <div class="card-body">
+            <h4 class="mb-4">Order Details</h4>
+            <ul class="list-group list-group-flush">
+                @foreach (var detail in Model.OrderDetails)
+                {
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>
+                            <strong>@detail.Product.Name</strong><br />
+                            Quantity: @detail.Count - Price: @detail.Price.ToString("c")
+                        </span>
+                        <span class="text-right">
+                            <strong>Total:</strong> @((detail.Count * detail.Price).ToString("c"))
+                        </span>
+                    </li>
+                }
+            </ul>
+            <div class="mt-4 d-flex justify-content-between align-items-center">
+                <h4 class="text-primary">Total:</h4>
+                <h4 class="text-primary">@Model.TotalPrice.ToString("c")</h4>
+            </div>
+        </div>
+        <div class="card-footer text-center">
+            <a href="@Url.Action("MyOrders", "Orders")" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Back to Orders
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        margin-top: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .card-header {
+        padding: 15px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-footer {
+        padding: 15px;
+    }
+
+    .list-group-item {
+        padding: 15px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+        .list-group-item:last-child {
+            border-bottom: none;
+        }
+
+    .text-right {
+        text-align: right;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+            border-color: #545b62;
+        }
+
+        .btn-secondary .fas {
+            margin-right: 8px;
+        }
+</style>

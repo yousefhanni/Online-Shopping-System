@@ -48,5 +48,9 @@ namespace MyShop.Domain.Models
         public string Address { get; set; } // Shipping address
         public string City { get; set; } // City for the shipping address
         public string? PhoneNumber { get; set; } // Contact phone number (optional)
+
+
+        public ICollection<OrderDetails> OrderDetails { get; set; } // This allows navigation from OrderHeader to OrderDetails
+
     }
 }

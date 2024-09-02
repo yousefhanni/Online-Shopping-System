@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyShop.Domain.Models;
 using MyShop.Domain.ViewModels;
 using MyShop.Utilities;
+using Stripe;
 using Stripe.Checkout;
 using System.Security.Claims;
 
@@ -232,6 +233,50 @@ namespace MyShop.Web.Areas.Customer.Controllers
         }
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CancelOrder(int orderId)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+            // Retrieve the order to be canceled
+            var orderHeader = await _unitOfWork.OrderHeader.GetItemAsync(o => o.Id == orderId && o.ApplicationUserId == claim.Value);
+
+            if (orderHeader == null)
+            {
+                return NotFound(); // Return a 404 if the order is not found or doesn't belong to the current user
+            }
+
+            // Check if the order status allows cancellation
+            if (orderHeader.OrderStatus == AppConstants.Pending || orderHeader.OrderStatus == AppConstants.Approve)
+            {
+                if (orderHeader.PaymentStatus == AppConstants.Approve)
+                {
+                    var refundOptions = new RefundCreateOptions
+                    {
+                        Reason = RefundReasons.RequestedByCustomer,
+                        PaymentIntent = orderHeader.PaymentIntentId
+                    };
+
+                    var refundService = new RefundService();
+                    Refund refund = refundService.Create(refundOptions);
+
+                    _unitOfWork.OrderHeader.UpdateStatus(orderHeader.Id, AppConstants.Cancelled, AppConstants.Refund);
+                }
+                else
+                {
+                    _unitOfWork.OrderHeader.UpdateStatus(orderHeader.Id, AppConstants.Cancelled, AppConstants.Cancelled);
+                }
+                await _unitOfWork.CompleteAsync();
+
+                TempData["Update"] = "Order has been Cancelled Successfully";
+                return RedirectToAction("OrderConfirmation", new { id = orderHeader.Id });
+            }
+
+            TempData["Error"] = "Order cannot be cancelled at this stage";
+            return RedirectToAction("OrderConfirmation", new { id = orderHeader.Id });
+        }
 
     }
 }

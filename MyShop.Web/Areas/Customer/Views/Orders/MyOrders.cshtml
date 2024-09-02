@@ -1,0 +1,79 @@
+﻿@using MyShop.Utilities
+@model IEnumerable<MyShop.Domain.Models.OrderHeader>
+
+@{
+    ViewData["Title"] = "Order History";
+}
+
+<h2 class="text-center my-4">Order History</h2>
+
+<div class="container">
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Date</th>
+                <th>Order Summary</th>
+                <th>Status</th>
+                <th>Total</th>
+                <th class="text-center">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.OrderDate.ToString("MM/dd/yyyy")</td>
+                    <td>
+                        <a href="@Url.Action("OrderSummary", "Orders", new { id = order.Id })" class="btn btn-info btn-sm">
+                            View Order Summary
+                        </a>
+                    </td>
+                    <td>
+                        <span class="badge
+                            @(order.OrderStatus == AppConstants.Pending ? "badge-warning text-dark" :
+                              order.OrderStatus == AppConstants.Approve ? "badge-success text-dark" :
+                              order.OrderStatus == AppConstants.Shipped ? "badge-info text-dark" :
+                              order.OrderStatus == AppConstants.Cancelled ? "badge-danger text-dark" : "badge-secondary text-dark")">
+                            @if (order.OrderStatus == AppConstants.Pending)
+                            {
+                                <i class="fas fa-clock"></i> @order.OrderStatus
+                            }
+                            else if (order.OrderStatus == AppConstants.Approve)
+                            {
+                                <i class="fas fa-check"></i> @order.OrderStatus
+                            }
+                            else if (order.OrderStatus == AppConstants.Shipped)
+                            {
+                                <i class="fas fa-truck"></i> @order.OrderStatus
+                            }
+                            else if (order.OrderStatus == AppConstants.Cancelled)
+                            {
+                                <i class="fas fa-times"></i> @order.OrderStatus
+                            }
+                            else
+                            {
+                                @order.OrderStatus
+                            }
+                        </span>
+                    </td>
+                    <td>@order.TotalPrice.ToString("c")</td>
+                    <td class="text-center">
+                        @if (order.OrderStatus == AppConstants.Pending || order.OrderStatus == AppConstants.Approve)
+                        {
+                            <form asp-action="CancelOrder" method="post" class="d-inline">
+                                <input type="hidden" name="orderId" value="@order.Id" />
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Cannot cancel</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
