@@ -20,7 +20,6 @@ This project is a Shopping MVC system developed using .NET 8.0. It is designed t
 - **Bootstrap**
 - **Uploading Files**
 - **Lock/Unlock User Account**
-- **Shopping Cart**
 - **View Components**
 
 ## Features
