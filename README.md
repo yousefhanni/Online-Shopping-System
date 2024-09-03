@@ -18,7 +18,6 @@ This project is a Shopping MVC system developed using .NET 8.0. It is designed t
 - **jQuery DataTables**
 - **Toaster Notification JS**
 - **Bootstrap**
-- **Fluent Validation**
 - **Uploading Files**
 - **Lock/Unlock User Account**
 - **Shopping Cart**
