@@ -94,4 +94,11 @@
     <Folder Include="wwwroot\Images\Products\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\css\LandingPage.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

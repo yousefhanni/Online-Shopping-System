@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css" />
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
+    <link href="~/css/landingpage.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Hero Image Section -->
+    <div class="hero-container">
+        <img src="/customer/images/PL1.jpg" alt="Hero Image" class="hero-image" />
+        <div class="hero-overlay">
+            <a href="/Customer/Home/Index" class="hero-button">
+                <i class="fas fa-box-open"></i> Shop Palestine
+            </a>
+        </div>
+    </div>
+
+    <!-- Featured Products Section -->
+    <div class="featured-products">
+        <h2>Featured Products</h2>
+        <div class="product-list slick-slider">
+            @foreach (var product in Model)
+            {
+                <div class="product-item">
+                    <img src="@product.Img" alt="@product.Name" />
+                    <h4>@product.Name</h4>
+                    <p>From $@product.Price USD</p>
+                    <a href="/Customer/Home/Details?ProductId=@product.Id" class="btn">Choose Options</a>
+                </div>
+            }
+        </div>
+    </div>
+    @* Use Slick Carousel plugin *@
+    <script>
+       $(document).ready(function () {
+    $('.slick-slider').slick({
+        infinite: false, // Disable infinite scroll
+        slidesToShow: 5,  // Number of products to show at a time
+        slidesToScroll: 1, // Scroll one product at a time
+        arrows: true,      // Enable navigation arrows
+        prevArrow: '<button type="button" class="slick-prev">&#8249;</button>',
+        nextArrow: '<button type="button" class="slick-next">&#8250;</button>',
+        responsive: [
+            {
+                breakpoint: 1024, // For medium screens
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1
+                }
+            },
+            {
+                breakpoint: 768,  // For smaller screens
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
+    });
+});
+    </script>
+</body>
+
+</html>

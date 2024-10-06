@@ -14,7 +14,6 @@ namespace MyShop.DAL.Repositories.Implementation
         {
             _context = context;
         }
-
         public async Task UpdateAsync(Product product)
         {
             var ProductInDb = await _context.Products.FirstOrDefaultAsync(x => x.Id == product.Id);
@@ -25,7 +24,12 @@ namespace MyShop.DAL.Repositories.Implementation
                 ProductInDb.Price = product.Price;
                 ProductInDb.Img = product.Img;
                 ProductInDb.CategoryId = product.CategoryId;
+
+                ProductInDb.IsFeatured = product.IsFeatured;
+
+                _context.Products.Update(ProductInDb);
             }
         }
+
     }
 }

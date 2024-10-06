@@ -12,8 +12,8 @@ using Myshop.DAL.Data;
 namespace MyShop.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240901013231_Edit")]
-    partial class Edit
+    [Migration("20241006015143_AddIsFeaturedToProduct_AndEditTrackingNumberName")]
+    partial class AddIsFeaturedToProduct_AndEditTrackingNumberName
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -369,6 +369,9 @@ namespace MyShop.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsFeatured")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -464,7 +467,7 @@ namespace MyShop.DAL.Migrations
             modelBuilder.Entity("MyShop.Domain.Models.OrderDetails", b =>
                 {
                     b.HasOne("MyShop.Domain.Models.OrderHeader", "OrderHeader")
-                        .WithMany()
+                        .WithMany("OrderDetails")
                         .HasForeignKey("OrderHeaderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -519,6 +522,11 @@ namespace MyShop.DAL.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("MyShop.Domain.Models.OrderHeader", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }

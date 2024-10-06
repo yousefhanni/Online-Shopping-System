@@ -252,7 +252,7 @@ namespace MyShop.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Models.OrderDetails", b =>
@@ -281,7 +281,7 @@ namespace MyShop.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("OrderDetails", (string)null);
+                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Models.OrderHeader", b =>
@@ -345,7 +345,7 @@ namespace MyShop.DAL.Migrations
 
                     b.HasIndex("ApplicationUserId");
 
-                    b.ToTable("OrderHeaders", (string)null);
+                    b.ToTable("OrderHeaders");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Models.Product", b =>
@@ -366,6 +366,9 @@ namespace MyShop.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsFeatured")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -377,7 +380,7 @@ namespace MyShop.DAL.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Products", (string)null);
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("MyShop.Domain.Models.ShoppingCart", b =>
@@ -404,7 +407,7 @@ namespace MyShop.DAL.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ShoppingCarts", (string)null);
+                    b.ToTable("ShoppingCarts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -461,7 +464,7 @@ namespace MyShop.DAL.Migrations
             modelBuilder.Entity("MyShop.Domain.Models.OrderDetails", b =>
                 {
                     b.HasOne("MyShop.Domain.Models.OrderHeader", "OrderHeader")
-                        .WithMany()
+                        .WithMany("OrderDetails")
                         .HasForeignKey("OrderHeaderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -516,6 +519,11 @@ namespace MyShop.DAL.Migrations
                     b.Navigation("ApplicationUser");
 
                     b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("MyShop.Domain.Models.OrderHeader", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }

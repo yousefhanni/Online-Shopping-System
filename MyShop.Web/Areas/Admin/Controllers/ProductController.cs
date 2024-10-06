@@ -53,8 +53,6 @@ namespace MyShop.Web.Areas.Admin.Controllers
             };
             return View(productVM);
         }
-
-        // Action to handle the form submission for creating a new product
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductViewModel productVM, IFormFile file)
@@ -68,7 +66,6 @@ namespace MyShop.Web.Areas.Admin.Controllers
                     var Upload = Path.Combine(RootPath, @"Images\Products");
                     var ext = Path.GetExtension(file.FileName);
 
-                    // Save the uploaded image file to the server
                     using (var filestream = new FileStream(Path.Combine(Upload, filename + ext), FileMode.Create))
                     {
                         await file.CopyToAsync(filestream);
@@ -76,14 +73,15 @@ namespace MyShop.Web.Areas.Admin.Controllers
                     productVM.Product.Img = @"Images\Products\" + filename + ext;
                 }
 
-                // Add the new product to the database
-                await  _unitOfWork.Product.AddAsync(productVM.Product);
+                await _unitOfWork.Product.AddAsync(productVM.Product);
                 await _unitOfWork.CompleteAsync();
+
                 TempData["Create"] = "Item has Created Successfully";
                 return RedirectToAction("Index");
             }
             return View(productVM.Product);
         }
+
 
         // Action to render the Edit Product form
         [HttpGet]
@@ -106,8 +104,6 @@ namespace MyShop.Web.Areas.Admin.Controllers
             };
             return View(productVM);
         }
-
-        // Action to handle the form submission for editing an existing product
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProductViewModel productVM, IFormFile? file)
@@ -122,7 +118,6 @@ namespace MyShop.Web.Areas.Admin.Controllers
                     var Upload = Path.Combine(RootPath, "Images", "Products");
                     var ext = Path.GetExtension(file.FileName);
 
-                    // If a new image is uploaded, delete the old one and save the new one
                     if (productVM.Product.Img != null)
                     {
                         var oldimg = Path.Combine(RootPath, productVM.Product.Img.TrimStart('\\'));
@@ -139,9 +134,9 @@ namespace MyShop.Web.Areas.Admin.Controllers
                     productVM.Product.Img = Path.Combine("Images", "Products", filename + ext);
                 }
 
-                // Update the product in the database
                 await _unitOfWork.Product.UpdateAsync(productVM.Product);
                 await _unitOfWork.CompleteAsync();
+
                 TempData["Update"] = "Data has been updated successfully";
                 return RedirectToAction("Index");
             }

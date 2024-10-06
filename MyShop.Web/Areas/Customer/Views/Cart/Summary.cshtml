@@ -1,5 +1,4 @@
-﻿@model ShoppingCartVM
-
+﻿@* @model ShoppingCartVM
 @using Microsoft.Extensions.Options
 @inject IOptions<MyShop.Utilities.StripeData> Stripe
 
@@ -9,21 +8,19 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <title>Snippet - BBBootstrap</title>
-    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+     <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
     <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
-    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+      <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script> 
     <link href="~/css/summary.css" rel="stylesheet" />
-    <link href="~/css/custom-styles.css" rel="stylesheet" />
 
     <style>
         .wrapper {
             margin-top: 50px; /* Adjust this value as needed */
-        }
+        }   
     </style>
 </head>
 <body className='snippet-body'>
     <div class="wrapper">
-        <div class="h5 large">Billing Address</div>
         <form method="post">
             <div class="row">
                 <div class="col-lg-6 col-md-8 col-sm-10 offset-lg-0 offset-md-2 offset-sm-1">
@@ -144,4 +141,131 @@
     </script>
 </body>
 </html>
- 
+  *@
+  @model ShoppingCartVM
+@using Microsoft.Extensions.Options
+@inject IOptions<MyShop.Utilities.StripeData> Stripe
+
+<!doctype html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Summary - Tech Store</title>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='https://use.fontawesome.com/releases/v5.7.2/css/all.css' rel='stylesheet'>
+    <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <link href="~/css/summary.css" rel="stylesheet" />
+
+    <style>
+        .wrapper {
+            margin-top: 50px;
+        }   
+    </style>
+</head>
+<body className='snippet-body'>
+    <div class="container wrapper">
+        <form method="post">
+            <div class="row card-container">
+                <!-- Billing Address Column -->
+                <div class="col-lg-7 col-md-8 col-sm-10">
+                    <div class="card card-equal-height">
+                        <div class="card-header">
+                            Billing Address
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="text-muted">Name</label>
+                                <input asp-for="OrderHeader.Name" type="text" class="form-control">
+                                <span asp-validation-for="OrderHeader.Name"></span>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>City</label>
+                                        <div class="d-flex jusify-content-start align-items-center rounded p-2">
+                                            <input asp-for="OrderHeader.City" type="text" class="form-control">
+                                            <span class="fas fa-check text-success pr-2"></span>
+                                            <span asp-validation-for="OrderHeader.City"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <div class="d-flex jusify-content-start align-items-center rounded p-2">
+                                            <input asp-for="OrderHeader.PhoneNumber" type="text" class="form-control">
+                                            <span class="fas fa-check text-success pr-2"></span>
+                                            <span asp-validation-for="OrderHeader.PhoneNumber"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <div class="d-flex jusify-content-start align-items-center rounded p-2">
+                                    <input type="text" asp-for="OrderHeader.Address" class="form-control" />
+                                    <span class="fas fa-check text-success pr-2"></span>
+                                    <span asp-validation-for="OrderHeader.Address"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cart Summary Column -->
+                <div class="col-lg-5 col-md-8 col-sm-10">
+                    <div class="card card-equal-height">
+                        <div class="card-header">
+                            Cart Summary
+                        </div>
+                        <div class="card-body">
+                            @if (Model.CartsList != null && Model.CartsList.Any())
+                            {
+                                foreach (var item in Model.CartsList)
+                                {
+                                    <div class="d-flex justify-content-between align-items-center pt-3 pb-2 border-bottom">
+                                        <div class="item pr-2">
+                                            <img src="/@item.Product.Img" alt="" width="80" height="80" class="img-fluid">
+                                            <div class="number">@item.Count</div>
+                                        </div>
+                                        <div class="d-flex flex-column px-3">
+                                            <b class="h5">@item.Product.Name</b>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <b class="h5">$@item.Product.Price</b>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <p>Your cart is empty.</p>
+                            }
+                            <div class="d-flex align-items-center py-2">
+                                <div class="display-5">Total</div>
+                                <div class="ml-auto d-flex">
+                                    <div class="text-primary text-uppercase px-3">usd</div>
+                                    <div class="font-weight-bold">$@Model.OrderHeader.TotalPrice</div>
+                                </div>
+                            </div>
+                            <div class="row pt-lg-3 pt-2 buttons mb-sm-0 mb-2">
+                                <div class="col-md-6">
+                                    <div class="btn text-uppercase">
+                                        <a href="/Customer/Home/Index">back to shopping</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pt-md-0 pt-1" style="padding-inline: 0px;">
+                                    <button type="submit" class="btn btn-primary">Place Order</button>
+                                </div>
+                            </div>
+                            <div class="text-muted pt-3">
+                                <span class="fas fa-lock"></span> Your information is safe
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

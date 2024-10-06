@@ -3,17 +3,17 @@
     width: 8px;
 }
 
-/* Track */
+ Track 
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
 
-/* Handle */
+ Handle 
 ::-webkit-scrollbar-thumb {
     background: #888;
 }
 
-    /* Handle on hover */
+     Handle on hover 
     ::-webkit-scrollbar-thumb:hover {
         background: #555;
     }
@@ -27,30 +27,6 @@
 
 body {
     background-color: #eee;
-}
-
-nav, .wrapper {
-    padding: 10px 50px;
-}
-
-/* Navbar styles */
-.navbar {
-    padding: 10px 50px;
-}
-
-.navbar-brand {
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.nav-link {
-    font-weight: 600;
-    color: #fff !important;
-}
-
-.navbar-toggler {
-    border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Form and summary styling */

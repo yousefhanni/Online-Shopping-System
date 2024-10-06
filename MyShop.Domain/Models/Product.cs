@@ -22,5 +22,9 @@ namespace MyShop.Domain.Models
         public int CategoryId { get; set; }  // Required
         [ValidateNever]
         public Category Category { get; set; }  // Required by EF Core
+
+        // Add the IsFeatured property
+        public bool IsFeatured { get; set; }  // New property to indicate featured products
     }
 }
+

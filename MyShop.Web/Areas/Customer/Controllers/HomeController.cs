@@ -23,6 +23,16 @@ namespace MyShop.Web.Areas.Customer.Controllers
             _logger = logger;
         }
 
+        // Redirect to the landing page on the main website load
+        public async Task<IActionResult> LandingPage()
+        {
+            // Fetch featured products (assuming you have a property IsFeatured)
+            var featuredProducts = await _unitofwork.Product.GetAllAsync(p => p.IsFeatured == true, includeProperties: "Category");
+
+            // Pass the featured products to the view
+            return View(featuredProducts);
+        }
+
         // Endpoint to display a paginated list of products with optional filtering by search query and category    
         public async Task<IActionResult> Index(string query, string category, int? page)
         {
