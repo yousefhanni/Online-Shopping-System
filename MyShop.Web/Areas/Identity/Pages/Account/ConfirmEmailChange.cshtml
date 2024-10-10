@@ -4,5 +4,46 @@
     ViewData["Title"] = "Confirm email change";
 }
 
-<h1>@ViewData["Title"]</h1>
-<partial name="_StatusMessage" model="Model.StatusMessage" />
+<div class="container text-center">
+    <h1 class="display-4 text-primary"><i class="fas fa-check-circle text-success"></i> Confirm email change</h1>
+    <p class="lead text-success">Thank you for confirming your email change!</p>
+    <p>Your email has been successfully updated. You can now use your new email for login and notifications.</p>
+
+    <div class="mt-4">
+        <a href="/Identity/Account/Manage" class="btn btn-primary btn-lg">Go to Account Settings</a>
+        <a href="/Identity/Account/Login" class="btn btn-outline-secondary btn-lg ml-2">Log in</a>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        setTimeout(function(){
+            window.location.href = '/Identity/Account/Manage';
+        }, 5000); 
+    </script>
+}
+
+<style>
+    .container {
+        margin-top: 50px;
+    }
+
+    .confirmation-img {
+        width: 100px;
+        height: auto;
+        transition: transform 0.3s ease;
+    }
+
+        .confirmation-img:hover {
+            transform: scale(1.1);
+        }
+
+    h1.display-4 {
+        font-weight: bold;
+    }
+
+    p.lead {
+        font-size: 1.2rem;
+    }
+</style>

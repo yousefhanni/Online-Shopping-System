@@ -1,95 +1,55 @@
-/*.navbar-brand {
-    display: flex;
-    align-items: center;
+.container-fluid {
+    margin-top: 50px;
 }
 
-    .navbar-brand img {
-        height: 80px;*/ /* Adjust image height */
-        /*width: auto;
-        margin-right: 5px;
-        border-radius: 10px;
-        background-color: #007bff;
-        padding: 2px;*/ /* Adjust padding around the image */
-    /*}
-
-.navbar-nav .nav-link {
-    font-size: 1rem;*/ /* Adjust font size */
-    /*margin-right: 5px;*/ /* Adjust spacing between buttons */
-    /*color: white;
-    transition: background-color 0.3s ease, color 0.3s ease;
+h1.display-4 {
+    font-weight: bold;
+    color: #0056b3; /* Text color */
 }
 
-    .navbar-nav .nav-link:hover,
-    .navbar-nav .nav-link:focus,
-    .navbar-nav .nav-link:active {
-        background-color: white !important;
-        color: #007bff !important;
-        border-radius: 50px;
+p.lead {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+form {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+    form .form-floating {
+        margin-bottom: 20px;
     }
 
-.btn-outline-light:hover,
-.btn-outline-light:focus,
-.btn-outline-light:active {
-    background-color: white !important;
-    color: #007bff !important;
-    border-radius: 50px;
-}
-
-.btn-outline-light {
-    border: 2px solid #ff5722;
-}*/
-
-/* Hide some buttons on smaller screens */
-/*@media (max-width: 992px) {
-    .navbar-nav .nav-item:not(:first-child) {
-        display: none;
-    }
-}*/
-
-.navbar-brand {
-    display: flex;
-    align-items: center;
-}
-
-    .navbar-brand img {
-        height: 80px; /* Adjust image height */
-        width: auto;
-        margin-right: 5px;
-        border-radius: 10px;
-        background-color: #007bff;
-        padding: 2px; /* Adjust padding around the image */
+    form button {
+        background: linear-gradient(90deg, rgba(0,123,255,1) 0%, rgba(0,200,255,1) 100%);
+        border: none;
+        font-size: 1.2rem;
+        color: white;
     }
 
-.navbar-nav .nav-link {
-    font-size: 1rem; /* Adjust font size */
-    margin-right: 5px; /* Adjust spacing between buttons */
-    color: white;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
+        form button:hover {
+            background-color: #0056b3;
+            transition: 0.3s ease;
+        }
 
-    .navbar-nav .nav-link:hover,
-    .navbar-nav .nav-link:focus,
-    .navbar-nav .nav-link:active {
-        background-color: white !important;
-        color: #007bff !important;
-        border-radius: 50px;
+/* Responsive design adjustments */
+@media (max-width: 768px) {
+    .container-fluid {
+        margin-top: 30px;
     }
 
-.btn-outline-light:hover,
-.btn-outline-light:focus,
-.btn-outline-light:active {
-    background-color: white !important;
-    color: #007bff !important;
-    border-radius: 50px;
-}
+    form {
+        padding: 15px;
+    }
 
-.btn-outline-light {
-    border: 2px solid #ff5722;
-}
+        form button {
+            font-size: 1rem;
+        }
 
-/* Hide some buttons on smaller screens */
-@media (max-width: 992px) {
-    .navbar-nav .nav-item:not(:first-child) {
-        display: none;
+    .lead {
+        font-size: 1rem;
     }
 }

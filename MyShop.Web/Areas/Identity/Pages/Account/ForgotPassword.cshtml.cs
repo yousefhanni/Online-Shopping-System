@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using MyShop.Domain.Models;
+using MyShop.Web.Services;
 
 namespace MyShop.Web.Areas.Identity.Pages.Account
 {
@@ -21,11 +22,13 @@ namespace MyShop.Web.Areas.Identity.Pages.Account
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IEmailSender _emailSender;
+        private readonly IEmailBodyBuilder _emailBodyBuilder;
 
-        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IEmailSender emailSender)
+        public ForgotPasswordModel(UserManager<ApplicationUser> userManager, IEmailSender emailSender, IEmailBodyBuilder emailBodyBuilder)
         {
             _userManager = userManager;
             _emailSender = emailSender;
+            _emailBodyBuilder = emailBodyBuilder;
         }
 
         /// <summary>
@@ -49,20 +52,22 @@ namespace MyShop.Web.Areas.Identity.Pages.Account
             [EmailAddress]
             public string Email { get; set; }
         }
-
         public async Task<IActionResult> OnPostAsync()
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var user = await _userManager.FindByEmailAsync(Input.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
-                {
-                    // Don't reveal that the user does not exist or is not confirmed
-                    return RedirectToPage("./ForgotPasswordConfirmation");
-                }
+                return Page(); 
+            }
 
-                // For more information on how to enable account confirmation and password reset please
-                // visit https://go.microsoft.com/fwlink/?LinkID=532713
+            var user = await _userManager.FindByEmailAsync(Input.Email);
+            if (user == null)
+            {
+           
+                return RedirectToPage("./ForgotPasswordConfirmation");
+            }
+
+            try
+            {
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                 var callbackUrl = Url.Page(
@@ -71,15 +76,24 @@ namespace MyShop.Web.Areas.Identity.Pages.Account
                     values: new { area = "Identity", code },
                     protocol: Request.Scheme);
 
-                await _emailSender.SendEmailAsync(
-                    Input.Email,
-                    "Reset Password",
-                    $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                var body = _emailBodyBuilder.GetEmailBody(
+                        $"Hey {user.Name},",
+                        "please click the below button to reset your password",
+                        $"{HtmlEncoder.Default.Encode(callbackUrl)}",
+                        "Reset Password"
+                );
 
-                return RedirectToPage("./ForgotPasswordConfirmation");
+                await _emailSender.SendEmailAsync(Input.Email, "Reset Password", body);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in sending reset email: {ex.Message}");
+                ModelState.AddModelError(string.Empty, "There was an error sending the email. Please try again later.");
+                return Page(); 
             }
 
-            return Page();
-        }
+            return RedirectToPage("./ForgotPasswordConfirmation");
+
+
     }
 }

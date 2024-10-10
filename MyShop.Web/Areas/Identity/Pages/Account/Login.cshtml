@@ -10,6 +10,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewData["Title"] - MyShop</title>
     <link rel="stylesheet" href="~/css/Profile.css?v=1.0" />
+
+    <style>
+        /* Profile.css or your custom CSS file */
+
+        /* Styling the "Forgot your password?" link */
+        #forgot-password {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 14px;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+            #forgot-password:hover {
+                text-decoration: underline;
+            }
+
+        /* Add some margin to the form's elements for better spacing */
+        .form-container form {
+            margin-bottom: 20px;
+        }
+
+            .form-container form .form-floating {
+                margin-bottom: 20px; /* Increases the space between input fields */
+            }
+
+        /* Adjust the spacing for the entire form container */
+        .form-container {
+            padding: 25px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
 </head>
 
 <section class="section-background py-5">
@@ -41,15 +76,12 @@
                             <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
                         </div>
                         <div>
-                            <p>
-                                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                            </p>
-                            <p>
-                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                            </p>
-                            <p>
-                                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                            </p>
+                            <!-- Forgot Password Link -->
+                            <div class="text-center mt-3">
+                                <p>
+                                    <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                                </p>
+                            </div>
                         </div>
                     </form>
                 </div>

@@ -6,6 +6,8 @@ using MyShop.Domain.Models;
 using MyShop.Utilities;
 using MyShop.DAL.Repositories.Implementation;
 using Stripe;
+using MyShop.Web.Services;
+using MyShop.Utilities.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,8 +36,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 .AddDefaultUI();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddSingleton<IEmailSender, EmailSender>();
-
+ 
+builder.Services.AddTransient<IEmailSender, EmailSender>();
+builder.Services.AddTransient<IEmailBodyBuilder, EmailBodyBuilder>();
+builder.Services.Configure<MailSettings>(builder.Configuration.GetSection(nameof(MailSettings)));
 
 // Enables in-memory caching for storing session data, essential for maintaining the shopping cart state.
 builder.Services.AddDistributedMemoryCache();
