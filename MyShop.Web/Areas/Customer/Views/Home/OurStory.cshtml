@@ -1,0 +1,106 @@
+﻿@page
+@model dynamic
+
+<div class="container mt-5">
+    <!-- Section Title -->
+    <h1 class="display-4 text-center">Our Story</h1>
+    <p class="text-center text-muted">The journey of craftsmanship and culture from Palestine</p>
+
+    <div class="row mt-4">
+        <!-- Main Content -->
+        <div class="col-md-12">
+            <p class="lead">
+                At <strong>Shop Palestine</strong>, we believe in the power of craftsmanship and the rich cultural heritage of Palestinian artisans. For centuries, Palestine has been home to some of the most talented artisans in the world, crafting beautiful products with their hands, each item telling its own unique story of tradition, resilience, and pride.
+            </p>
+            <p>
+                Our journey began with a simple mission: to support Palestinian artisans by providing a global platform for their handmade products. We realized that, while many of these skilled artisans continue to create stunning items, their ability to sell their goods to a wider audience was limited. <strong>Shop Palestine</strong> was founded to bridge that gap.
+            </p>
+            <p>
+                Every product we offer is more than just an item; it’s a work of art, a piece of history, and a contribution to a sustainable future for Palestinian craftsmanship. From vibrant ceramics and hand-embroidered textiles to olive wood carvings and intricate pottery, each item is crafted with passion, care, and dedication to preserving the ancient techniques passed down through generations.
+            </p>
+            <p>
+                By purchasing from <strong>Shop Palestine</strong>, you are directly supporting the livelihoods of these artisans and helping preserve the cultural heritage of Palestine. Each item purchased helps to provide financial independence for artisans and their families, while also promoting the story of Palestinian art and craftsmanship around the world.
+            </p>
+            <p class="text-center font-italic">
+                We invite you to explore our collection and discover the beauty of Palestinian culture, one handcrafted piece at a time.
+            </p>
+        </div>
+    </div>
+
+    <!-- Quick Facts Section -->
+    <div class="facts-section text-center mt-5">
+        <h2>Quick Facts About Palestinian Craftsmanship</h2>
+        <ul class="list-unstyled">
+            <li><i class="fas fa-check"></i> Centuries-old craft techniques preserved by generations.</li>
+            <li><i class="fas fa-check"></i> Every product sold supports artisan families.</li>
+            <li><i class="fas fa-check"></i> Unique, handcrafted items that tell a story of resilience.</li>
+        </ul>
+    </div>
+
+    <!-- Call-to-action Buttons -->
+    <div class="text-center mt-5">
+        <a href="@Url.Action("Index", "Home", new { area = "Customer" })" class="btn btn-success btn-lg">Explore Products</a>
+    </div>
+
+</div>
+
+<!-- Custom CSS -->
+<style>
+    .container {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-top: 50px;
+    }
+
+    .display-4 {
+        font-weight: bold;
+        color: #2a5d84;
+    }
+
+    .lead {
+        font-size: 1.3rem;
+        color: #4caf50;
+    }
+
+    p {
+        font-size: 1.1rem;
+        color: #333;
+        line-height: 1.7;
+    }
+
+    .facts-section {
+        background-color: #f9f9f9;
+        padding: 20px;
+        margin-top: 40px;
+        border-radius: 8px;
+    }
+
+        .facts-section h2 {
+            color: #2a5d84;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .facts-section ul {
+            list-style: none;
+        }
+
+        .facts-section li {
+            font-size: 1.1rem;
+            color: #333;
+            margin: 10px 0;
+        }
+
+        .facts-section i {
+            color: #4caf50;
+            margin-right: 10px;
+        }
+
+    .btn {
+        margin-top: 20px;
+        padding: 10px 20px;
+    }
+
+    .btn-lg {
+        font-size: 1.2rem;
+    }
+</style>

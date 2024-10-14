@@ -70,63 +70,55 @@
 }
 
 .product-item {
-    flex: 1 0 auto; /* Flex-grow, flex-shrink, flex-basis - ensures that cards can shrink or grow as needed */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 300px;
-    margin: 15px;
+    flex: 0 1 auto; /* يحافظ على حجم العنصر ويجعله يتكيف */
+    max-width: 250px; /* عرض محدد لكل عنصر */
+    margin: 15px; /* تباعد بين العناصر */
     padding: 20px;
+    text-align: center;
     border: 1px solid #ddd;
     border-radius: 5px;
-    text-align: center;
-    transition: transform 0.3s ease;
 }
 
-    /* Ensure the images take up consistent space */
+
     .product-item img {
         width: 100%;
-        height: 200px; /* Set a fixed height for the images */
-        object-fit: contain; /* Ensure images maintain aspect ratio */
+        height: 200px; /* ارتفاع ثابت */
+        object-fit: contain; /* يحتفظ بنسبة العرض والارتفاع للصورة */
         margin-bottom: 15px;
     }
 
-    /* Ensure the title has a consistent height */
     .product-item h4 {
         font-size: 18px;
         margin-bottom: 10px;
-        min-height: 50px; /* Set a minimum height for product titles */
+        min-height: 50px; /* يضمن ثبات العنوان */
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
     }
 
-    /* Consistent spacing for product price */
     .product-item p {
         margin-bottom: 10px;
         font-size: 16px;
         color: #333;
     }
 
-    /* Ensure buttons are consistent across products */
     .product-item .btn {
-        padding: 10px 20px;
+        margin-top: auto; /* يضمن أن الزر يبقى في أسفل العنصر */
+        width: 100%; /* عرض الزر كامل */
+        padding: 10px;
         background-color: #ff6347;
         color: white;
-        border: none;
         text-transform: uppercase;
         font-weight: bold;
         cursor: pointer;
-        margin-top: auto; /* Push the button to the bottom of the card */
     }
 
         .product-item .btn:hover {
             background-color: #000;
             color: white;
         }
+
 
 /* Arrow Styles */
 .slick-prev, .slick-next {

@@ -56,13 +56,13 @@ namespace MyShop.Web.Areas.Identity.Pages.Account
         {
             if (!ModelState.IsValid)
             {
-                return Page(); 
+                return Page();
             }
 
             var user = await _userManager.FindByEmailAsync(Input.Email);
             if (user == null)
             {
-           
+
                 return RedirectToPage("./ForgotPasswordConfirmation");
             }
 
@@ -89,11 +89,13 @@ namespace MyShop.Web.Areas.Identity.Pages.Account
             {
                 Console.WriteLine($"Error in sending reset email: {ex.Message}");
                 ModelState.AddModelError(string.Empty, "There was an error sending the email. Please try again later.");
-                return Page(); 
+                return Page();
             }
 
             return RedirectToPage("./ForgotPasswordConfirmation");
 
+
+        }
 
     }
 }

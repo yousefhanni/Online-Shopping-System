@@ -1,4 +1,4 @@
-﻿@* @using Microsoft.AspNetCore.Http
+﻿ @using Microsoft.AspNetCore.Http
 @using MyShop.Utilities
 @inject IHttpContextAccessor httpContextAccessor
 
@@ -13,315 +13,11 @@
 
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <link href="~/customer/css/styles.css" rel="stylesheet" />
-
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
-    <link href="~/css/custom-styles.css" rel="stylesheet" />
-
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .navbar {
-            background-color: white;
-            box-shadow: 0 4px 2px -2px gray;
-        }
-
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-            .navbar-brand img {
-                max-height: 40px;
-                margin-right: 10px;
-            }
-
-        .navbar-nav .nav-link {
-            font-size: 1rem;
-            font-weight: 500;
-            color: black;
-            padding: 0.5rem 1rem;
-        }
-
-            .navbar-nav .nav-link:hover {
-                color: #ff6347;
-            }
-
-        .btn-donate, .btn-gift-card {
-            border: 1px solid #ff6347;
-            color: #ff6347;
-            background-color: transparent;
-            padding: 0.5rem 1rem;
-            margin-left: 10px;
-            font-weight: 500;
-        }
-
-            .btn-donate:hover, .btn-gift-card:hover {
-                background-color: #ff6347;
-                color: white;
-            }
-
-        .hero {
-            background-image: url('https://shoppalestine.org/some-image.jpg'); /* ضع هنا رابط الصورة الخلفية */
-            background-size: cover;
-            background-position: center;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-        }
-
-            .hero h1 {
-                font-size: 3rem;
-                font-weight: bold;
-                text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-            }
-
-            .hero button {
-                margin-top: 20px;
-                padding: 10px 20px;
-                background-color: #ff6347;
-                border: none;
-                color: white;
-                font-size: 1.2rem;
-                cursor: pointer;
-            }
-
-        .featured-products {
-            padding: 50px 0;
-            text-align: center;
-        }
-
-            .featured-products h2 {
-                margin-bottom: 30px;
-                font-size: 2rem;
-                font-weight: bold;
-            }
-
-        .product-card {
-            border: 1px solid #e0e0e0;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-            .product-card img {
-                max-width: 100%;
-                height: auto;
-                margin-bottom: 10px;
-            }
-
-            .product-card .price {
-                color: #ff6347;
-                font-weight: bold;
-                margin-top: 10px;
-            }
-
-            .product-card button {
-                margin-top: 15px;
-                padding: 10px 20px;
-                background-color: #ff6347;
-                color: white;
-                border: none;
-                cursor: pointer;
-            }
-
-        footer {
-            background-color: #f8f9fa;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-            footer p {
-                margin: 0;
-                color: #6c757d;
-            }
-    </style>    
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Our Story</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Artisans</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                </ul>
-                <a href="#" class="btn btn-donate">Donate</a>
-                <a href="#" class="btn btn-gift-card">Gift Card</a>
-            </div>
-        </div>
-    </nav>
-
-    @RenderBody();
-
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Tech Store @DateTime.Now.Year</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/customer/js/scripts.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>   *@
-
-@* 
-@using Microsoft.AspNetCore.Http
-@using MyShop.Utilities
-@inject IHttpContextAccessor httpContextAccessor
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>@ViewData["Title"] - Tech Store</title>
-
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .navbar-left {
-            display: flex;
-            align-items: center;
-            padding-right: 351px;
-        }
-        .navbar {
-            background-color: white;
-            box-shadow: 0 4px 2px -2px gray;
-        }
-
-        .navbar-brand {
-            font-weight: bold;
-            font-size: 1.5rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .navbar-nav .nav-link {
-            font-size: 1rem;
-            font-weight: 500;
-            color: black;
-            padding: 0.5rem 1rem;
-        }
-
-            .navbar-nav .nav-link:hover {
-                color: #ff6347;
-            }
-
-        .btn-donate, .btn-gift-card {
-            border: 1px solid #ff6347;
-            color: #ff6347;
-            background-color: transparent;
-            padding: 0.5rem 1rem;
-            margin-left: 10px;
-            font-weight: 500;
-        }
-
-            .btn-donate:hover, .btn-gift-card:hover {
-                background-color: #ff6347;
-                color: white;
-            }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-            <div class="navbar-left">
-                <a class="navbar-brand  fw-bold" href="@Url.Action("LandingPage", "Home", new { area = "Customer" })">
-                    <div>
-                        <img src="/customer/images/logo-Palastine.jpg" alt="palestine" class="logo-img">
-
-                    </div>
-
-                </a>
-            </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Centered navigation links -->
-            <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Our Story</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Artisans</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Right-aligned buttons -->
-            <div class="d-flex">
-                <a href="#" class="btn btn-donate">Donate</a>
-                <a href="#" class="btn btn-gift-card">Gift Card</a>
-            </div>
-        </div>
-    </nav>
-
-    @RenderBody();
-
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Tech Store @DateTime.Now.Year</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/customer/js/scripts.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
- *@
- @*///////////////////////////////////////////*@
-@* 
- @using Microsoft.AspNetCore.Http
-@using MyShop.Utilities
-@inject IHttpContextAccessor httpContextAccessor
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>@ViewData["Title"] - Tech Store</title>
-
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
 
     <style>
         body {
@@ -335,8 +31,15 @@
             padding: 10px 0;
         }
 
+        .navbar-brand {
+            height: 70px;
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+
         .navbar-brand img {
-            height: 50px; /* حجم الصورة المصغر */
+            height: 70px;
             margin-right: 10px;
         }
 
@@ -347,999 +50,89 @@
             padding: 0.5rem 1rem;
         }
 
-            .navbar-nav .nav-link:hover {
-                color: #ff6347;
-            }
-
-        .btn-donate, .btn-gift-card {
-            border: 1px solid #ff6347;
+        .navbar-nav .nav-link:hover {
             color: #ff6347;
-            background-color: transparent;
-            padding: 0.5rem 1rem;
-            margin-left: 10px;
-            font-weight: 500;
         }
 
-            .btn-donate:hover, .btn-gift-card:hover {
-                background-color: #ff6347;
-                color: white;
-            }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-            <!-- Left-aligned logo -->
-            <a class="navbar-brand" href="@Url.Action("LandingPage", "Home", new { area = "Customer" })">
-                <img src="/customer/images/logo-Palastine.jpg" alt="palestine" class="logo-img">
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Centered navigation links -->
-            <div class="collapse navbar-collapse justify-content-center" id="navbarResponsive">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Our Story</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Artisans</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Right-aligned buttons -->
-            <div class="d-flex">
-                <a href="#" class="btn btn-donate">Donate</a>
-                <a href="#" class="btn btn-gift-card">Gift Card</a>
-            </div>
-        </div>
-    </nav>
-
-    @RenderBody();
-
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Tech Store @DateTime.Now.Year</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/customer/js/scripts.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
- *@
-@* 
- @using Microsoft.AspNetCore.Http
-@using MyShop.Utilities
-@inject IHttpContextAccessor httpContextAccessor
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>@ViewData["Title"] - Tech Store</title>
-
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        /* Navbar Styles */
-        .navbar {
-            background-color: white;
-            box-shadow: 0 4px 2px -2px gray;
-            padding: 10px 0;
-        }
-
-        .navbar-brand {
-            height: 50px; /* حجم الشعار المصغر */
+        /* Navbar Flexbox Styling */
+        .navbar-right {
             display: flex;
             align-items: center;
+            gap: 15px; /* Adding gap between items */
         }
 
-            .navbar-brand img {
-                height: 50px; /* تصغير الشعار */
-                margin-right: 10px;
-            }
-
-        .navbar-nav .nav-link {
-            font-size: 1rem;
-            font-weight: 500;
-            color: black;
-            padding: 0.5rem 1rem;
+        .nav-item {
+            margin-left: 5px;
         }
 
-            .navbar-nav .nav-link:hover {
-                color: #ff6347;
-            }
-
-        .btn-donate, .btn-gift-card {
-            border: 1px solid #ff6347;
-            color: #ff6347;
-            background-color: transparent;
-            padding: 0.5rem 1rem;
-            margin-left: 10px;
-            font-weight: 500;
-        }
-
-            .btn-donate:hover, .btn-gift-card:hover {
-                background-color: #ff6347;
-                color: white;
-            }
-
-        /* Center the navbar links */
-        .navbar-center {
-            position: absolute;
-            left: 22%;
-            transform: translateX(-50%);
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container position-relative">
-            <!-- Left-aligned logo -->
-            <a class="navbar-brand" href="@Url.Action("LandingPage", "Home", new { area = "Customer" })">
-                <img src="/customer/images/logo-Palastine.jpg" alt="Shop Palestine Logo" />
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Centered navigation links -->
-            <div class="collapse navbar-collapse navbar-center" id="navbarResponsive">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Our Story</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Artisans</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Right-aligned buttons -->
-            <div class="d-flex ms-auto">
-                <a href="#" class="btn btn-donate">Donate</a>
-                <a href="#" class="btn btn-gift-card">Gift Card</a>
-            </div>
-        </div>
-    </nav>
-
-    @RenderBody();
-
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Tech Store @DateTime.Now.Year</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/customer/js/scripts.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
- *@
-@* 
- @using Microsoft.AspNetCore.Http
-@using MyShop.Utilities
-@inject IHttpContextAccessor httpContextAccessor
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>@ViewData["Title"] - Tech Store</title>
-
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        /* Navbar Styles */
-        .navbar {
-            background-color: white;
-            box-shadow: 0 4px 2px -2px gray;
-            padding: 10px 0;
-        }
-
-        .navbar-brand {
-            height: 70px; /* حجم الشعار المصغر */
-            display: flex;
-            align-items: center;
-            margin-left: 20px; /* تحريك الشعار قليلاً إلى اليمين */
-        }
-
-            .navbar-brand img {
-                height: 70px; /* تصغير الشعار */
-                margin-right: 10px;
-            }
-
-        .navbar-nav .nav-link {
-            font-size: 1rem;
-            font-weight: 500;
-            color: black;
-            padding: 0.5rem 1rem;
-        }
-
-            .navbar-nav .nav-link:hover {
-                color: #ff6347;
-            }
-
-        .btn-donate, .btn-gift-card {
-            border: 1px solid #ff6347;
-            color: #ff6347;
-            background-color: transparent;
-            padding: 0.5rem 1rem;
-            margin-left: 10px;
-            font-weight: 500;
-        }
-
-            .btn-donate:hover, .btn-gift-card:hover {
-                background-color: #ff6347;
-                color: white;
-            }
-
-        /* Remove padding from the container */
-        .container-fluid {
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        /* Image Styles */
-        .hero-image {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-
-        .hero-container {
-            position: relative;
-            text-align: center;
-            color: white;
-        }
-
-        .hero-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 3rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-        }
-
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid position-relative">
-            <!-- Left-aligned logo -->
-            <a class="navbar-brand" href="@Url.Action("LandingPage", "Home", new { area = "Customer" })">
-                <img src="/customer/images/logo-Palastine.jpg" alt="Shop Palestine Logo" />
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Centered navigation links -->
-            <div class="collapse navbar-collapse navbar-center" id="navbarResponsive">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Our Story</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Artisans</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Right-aligned buttons -->
-            <div class="d-flex ms-auto">
-                <a href="#" class="btn btn-donate">Donate</a>
-                <a href="#" class="btn btn-gift-card">Gift Card</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Image Section -->
-    <div class="hero-container">
-        <img src="/customer/images/PL1.jpg" alt="Hero Image" class="hero-image" />
-        <div class="hero-text">Shop For A Cause</div>
-    </div>
-
-    <!-- Page content goes here -->
-    @RenderBody();
-
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Tech Store @DateTime.Now.Year</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/customer/js/scripts.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
-
- *@
- @* 
- @using Microsoft.AspNetCore.Http
-@using MyShop.Utilities
-@inject IHttpContextAccessor httpContextAccessor
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>@ViewData["Title"] - Tech Store</title>
-       <link href="~/customer/css/styles.css" rel="stylesheet" />
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        /* Navbar Styles */
-        .navbar {
-            background-color: white;
-            box-shadow: 0 4px 2px -2px gray;
-            padding: 10px 0;
-        }
-
-        .navbar-brand {
-            height: 70px; /* حجم الشعار المصغر */
-            display: flex;
-            align-items: center;
-            margin-left: 20px; /* تحريك الشعار قليلاً إلى اليمين */
-        }
-
-            .navbar-brand img {
-                height: 70px; /* تصغير الشعار */
-                margin-right: 10px;
-            }
-
-        .navbar-nav .nav-link {
-            font-size: 1rem;
-            font-weight: 500;
-            color: black;
-            padding: 0.5rem 1rem;
-        }
-
-            .navbar-nav .nav-link:hover {
-                color: #ff6347;
-            }
-        /* Remove padding from the container */
-        .container-fluid {
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        /* Image Styles */
-        .hero-image {
-            width: 100%;
-            height: 400px; /* تم تصغير حجم الصورة هنا */
-            object-fit: cover;
-        }
-
-        .hero-container {
-            position: relative;
-            text-align: center;
-            color: white;
-        }
-        /* Overlay and Button Positioning */
-        .hero-overlay {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px 40px;
-            border-radius: 4px;
-            text-align: center;
-        }
-
-        .hero-text {
-            font-size: 2rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
-        }
-
-        /* Button Styles */
-        .hero-button {
-            display: inline-block;
-            padding: 12px 30px;
-            margin-top: 20px;
-            background-color: transparent;
-            border: 2px solid white;
-            color: white;
-            font-size: 1rem;
-            font-weight: bold;
-            text-transform: uppercase;
+        .nav-item a {
             text-decoration: none;
-            border-radius: 2px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-            .hero-button:hover {
-                background-color: white;
-                color: #000;
-            }
-
-        .nav-item {
-            margin-left: 5px;
+            color: black;
+            font-weight: 600;
+            padding: 10px 15px;
+            transition: box-shadow 0.3s ease;
         }
 
-            .nav-item a {
-                text-decoration: none;
-                color: black;
-                font-weight: 600;
-                padding: 10px 15px;
-                transition: box-shadow 0.3s ease;
-            }
+        .nav-item a:hover {
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+            color: black;
+        }
 
-                .nav-item a:hover {
-                    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7); /* Blue glow on hover */
-                    color: black
-                }
-
-        /* Cart Button */
+        /* Cart Button Styling */
         .cart-button {
-            background-color: blue;
+            background-color: #ff6347;
+            border: 2px solid #ff6347;
             border-radius: 50px;
-            padding: 8px 16px;
+            padding: 5px 15px;
             color: white;
             display: flex;
             align-items: center;
-            font-size: 18px;
-            margin-left: 10px;
-        }
-
-            .cart-button i {
-                margin-right: 8px;
-            }
-
-            .cart-button:hover {
-                background-color: blue;
-            }
-
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid position-relative">
-            <!-- Left-aligned logo -->
-            <a class="navbar-brand" href="@Url.Action("LandingPage", "Home", new { area = "Customer" })">
-                <img src="/customer/images/logo-Palastine.jpg" alt="Shop Palestine Logo" />
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Centered navigation links -->
-            <div class="collapse navbar-collapse navbar-center" id="navbarResponsive">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="@Url.Action("LandingPage", "Home", new { area = "Customer" })">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Our Story</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                </ul>
-            </div>
-            <div class="navbar-right ms-auto">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-
-            <partial name="_LoginPartial" />
-
-            <li class="nav-item">
-                <a class="our" href="/Customer/Cart/Index" class="btn btn-outline-black cart-button">
-                    <i class="bi-cart-fill me-1"></i> Cart @await Component.InvokeAsync("ShoppingCart")
-                </a>
-            </li>
-                </ul>
-            </div>
-
-        </div>
-    </nav>
-
-    <!-- Page content goes here -->
-    @RenderBody();
-
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Tech Store @DateTime.Now.Year</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/customer/js/scripts.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
- *@
-@* 
- @using Microsoft.AspNetCore.Http
-@using MyShop.Utilities
-@inject IHttpContextAccessor httpContextAccessor
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>@ViewData["Title"] - Tech Store</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        /* Navbar Styles */
-        .navbar {
-            background-color: white;
-            box-shadow: 0 4px 2px -2px gray;
-            padding: 10px 0;
-        }
-
-        .navbar-brand {
-            height: 70px;
-            display: flex;
-            align-items: center;
-            margin-left: 20px;
-        }
-
-            .navbar-brand img {
-                height: 70px;
-                margin-right: 10px;
-            }
-
-        .navbar-nav .nav-link {
-            font-size: 1rem;
-            font-weight: 500;
-            color: black;
-            padding: 0.5rem 1rem;
-        }
-
-            .navbar-nav .nav-link:hover {
-                color: #ff6347;
-            }
-
-        /* Navbar Flexbox Styling */
-        .navbar-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .nav-item {
-            margin-left: 5px;
-        }
-
-            .nav-item a {
-                text-decoration: none;
-                color: black;
-                font-weight: 600;
-                padding: 10px 15px;
-                transition: box-shadow 0.3s ease;
-            }
-
-                .nav-item a:hover {
-                    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
-                    color: black;
-                }
-        /* Cart Button Styling */
-        .cart-button {
-            background-color: white;
-            border: 2px solid #000;
-            border-radius: 50px;
-            padding: 5px 15px;
-            color: black;
-            display: flex;
-            align-items: center;
             font-size: 16px;
             font-weight: bold;
             transition: background-color 0.3s, color 0.3s;
         }
 
-            .cart-button i {
-                margin-right: 8px;
-                font-size: 20px;
-            }
-
-            .cart-button:hover {
-                background-color: #000;
-                color: white;
-            }
-
-
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid position-relative">
-            <!-- Left-aligned logo -->
-            <a class="navbar-brand" href="@Url.Action("LandingPage", "Home", new { area = "Customer" })">
-                <img src="/customer/images/logo-Palastine.jpg" alt="Shop Palestine Logo" />
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Centered navigation links -->
-            <div class="collapse navbar-collapse navbar-center" id="navbarResponsive">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="@Url.Action("LandingPage", "Home", new { area = "Customer" })">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Our Story</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                </ul>
-            </div>
-            @if (User.Identity.IsAuthenticated)
-            {
-                @if (User.IsInRole(AppConstants.AdminRole))
-                {
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold text-white" href='/Admin/Dashboard/Index'>
-                            <i class="bi bi-speedometer2"></i> Dashboard
-                        </a>
-                    </li>
-                }
-                else
-                {
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Setting</a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/Identity/Account/Manage">Edit Profile</a></li>
-                            <li><a class="dropdown-item" href="/Customer/Orders/MyOrders">My Orders</a></li> <!-- هنا تمت إضافة زر "My Orders" -->
-                        </ul>
-                    </li>
-
-                }
-            }
-            <!-- Right-aligned buttons (Login, Register, Cart) -->
-            <div class="navbar-right ms-auto">
-                <!-- Login/Register -->
-                <partial name="_LoginPartial" />
-
-                <!-- Cart Button -->
-                <a href="/Customer/Cart/Index" class="cart-button">
-                    <i class="fas fa-shopping-cart"></i> Cart @await Component.InvokeAsync("ShoppingCart")
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Page content goes here -->
-    @RenderBody();
-
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Tech Store @DateTime.Now.Year</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/customer/js/scripts.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
- *@
-@* 
- @using Microsoft.AspNetCore.Http
-@using MyShop.Utilities
-@inject IHttpContextAccessor httpContextAccessor
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>@ViewData["Title"] - Tech Store</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .cart-button i {
+            margin-right: 8px;
+            font-size: 20px;
         }
 
-        /* Navbar Styles */
-        .navbar {
+        .cart-button:hover {
             background-color: white;
-            box-shadow: 0 4px 2px -2px gray;
-            padding: 10px 0;
+            color: #ff6347;
         }
 
-        .navbar-brand {
-            height: 70px;
-            display: flex;
-            align-items: center;
-            margin-left: 20px;
-        }
-
-            .navbar-brand img {
-                height: 70px;
-                margin-right: 10px;
-            }
-
-        .navbar-nav .nav-link {
+        /* Dashboard Button Styling */
+        .dashboard-button {
+            background-color: #FF6347;
+            border-radius: 10px;
+            padding: 8px 20px;
+            color: white;
             font-size: 1rem;
-            font-weight: 500;
-            color: black;
-            padding: 0.5rem 1rem;
-        }
-
-            .navbar-nav .nav-link:hover {
-                color: #ff6347;
-            }
-
-        /* Navbar Flexbox Styling */
-        .navbar-right {
-            display: flex;
-            align-items: center;
-            gap: 15px; /* إضافة فجوة بين العناصر */
-        }
-
-        .nav-item {
-            margin-left: 5px;
-        }
-
-            .nav-item a {
-                text-decoration: none;
-                color: black;
-                font-weight: 600;
-                padding: 10px 15px;
-                transition: box-shadow 0.3s ease;
-            }
-
-                .nav-item a:hover {
-                    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
-                    color: black;
-                }
-
-        /* Cart Button Styling */
-        .cart-button {
-            background-color: white;
-            border: 2px solid #000;
-            border-radius: 50px;
-            padding: 5px 15px;
-            color: black;
-            display: flex;
-            align-items: center;
-            font-size: 16px;
             font-weight: bold;
             transition: background-color 0.3s, color 0.3s;
         }
 
-            .cart-button i {
-                margin-right: 8px;
-                font-size: 20px;
-            }
-
-            .cart-button:hover {
-                background-color: #000;
-                color: white;
-            }
-
-        /* Adjust flex alignment for navbar right */
-        .navbar-right .user-info,
-        .navbar-right .cart-button {
-            display: flex;
-            align-items: center;
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container-fluid position-relative">
-            <!-- Left-aligned logo -->
-            <a class="navbar-brand" href="@Url.Action("LandingPage", "Home", new { area = "Customer" })">
-                <img src="/customer/images/logo-Palastine.jpg" alt="Shop Palestine Logo" />
-            </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Centered navigation links -->
-            <div class="collapse navbar-collapse navbar-center" id="navbarResponsive">
-                <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="@Url.Action("LandingPage", "Home", new { area = "Customer" })">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Our Story</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Right-aligned buttons (Dashboard, Hello User, Logout, Cart) -->
-            <div class="navbar-right ms-auto">
-                @if (User.Identity.IsAuthenticated)
-                {
-                    @if (User.IsInRole(AppConstants.AdminRole))
-                    {
-                        <a href="/Admin/Dashboard/Index" class="nav-link fw-bold text-black">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
-                        </a>
-                    }
-                    else
-                    {
-                        <li class="nav-item dropdown">
-                            <a class="nav-link fw-bold text-black dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Setting</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="/Identity/Account/Manage">Edit Profile</a></li>
-                                <li><a class="dropdown-item" href="/Customer/Orders/MyOrders">My Orders</a></li> <!-- هنا تمت إضافة زر "My Orders" -->
-                            </ul>
-                        </li>
-
-                    }
-                }
-                    <!-- Show Login/Register -->
-                    <partial name="_LoginPartial" />
-                <!-- Cart Button -->
-                <a href="/Customer/Cart/Index" class="cart-button">
-                    <i class="fas fa-shopping-cart"></i> Cart @await Component.InvokeAsync("ShoppingCart")
-                </a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Page content goes here -->
-    @RenderBody();
-
-    <footer class="py-5 bg-dark">
-        <div class="container">
-            <p class="m-0 text-center text-white">Copyright &copy; Tech Store @DateTime.Now.Year</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/customer/js/scripts.js"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
-</html>
- *@
-
- @using Microsoft.AspNetCore.Http
-@using MyShop.Utilities
-@inject IHttpContextAccessor httpContextAccessor
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>@ViewData["Title"] - Tech Store</title>
-
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .dashboard-button:hover {
+            background-color: #b33939;
+            color: white;
         }
 
-        /* Navbar Styles */
-        .navbar {
-            background-color: white;
-            box-shadow: 0 4px 2px -2px gray;
-            padding: 10px 0;
-        }
-
-        .navbar-brand {
-            height: 70px;
-            display: flex;
-            align-items: center;
-            margin-left: 20px;
-        }
-
-            .navbar-brand img {
-                height: 70px;
-                margin-right: 10px;
-            }
-
-        .navbar-nav .nav-link {
+        /* My Settings Button Styling */
+        .settings-button {
+            background-color: #FF6347;
+            border-radius: 10px;
+            padding: 8px 20px;
+            color: white;
             font-size: 1rem;
-            font-weight: 500;
-            color: black;
-            padding: 0.5rem 1rem;
-        }
-
-            .navbar-nav .nav-link:hover {
-                color: #ff6347;
-            }
-
-        /* Navbar Flexbox Styling */
-        .navbar-right {
-            display: flex;
-            align-items: center;
-            gap: 15px; /* إضافة فجوة بين العناصر */
-        }
-
-        .nav-item {
-            margin-left: 5px;
-        }
-
-            .nav-item a {
-                text-decoration: none;
-                color: black;
-                font-weight: 600;
-                padding: 10px 15px;
-                transition: box-shadow 0.3s ease;
-            }
-
-                .nav-item a:hover {
-                    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
-                    color: black;
-                }
-
-        /* Cart Button Styling */
-        .cart-button {
-            background-color: white;
-            border: 2px solid #000;
-            border-radius: 50px;
-            padding: 5px 15px;
-            color: black;
-            display: flex;
-            align-items: center;
-            font-size: 16px;
             font-weight: bold;
             transition: background-color 0.3s, color 0.3s;
         }
 
-            .cart-button i {
-                margin-right: 8px;
-                font-size: 20px;
-            }
-
-            .cart-button:hover {
-                background-color: #000;
-                color: white;
-            }
+        .settings-button:hover {
+            background-color: #b33939;
+            color: white;
+        }
 
         /* Adjust flex alignment for navbar right */
         .navbar-right .user-info,
@@ -1358,105 +151,107 @@
         .navbar-right .dropdown-menu {
             min-width: 150px;
         }
+
+        /* Footer Styles */
         .custom-footer {
-    background-color: #080D17;
-    padding: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-family: "Instrument Sans", sans-serif;
-    text-align: center;
-}
+            background-color: #080D17;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-family: "Instrument Sans", sans-serif;
+            text-align: center;
+        }
 
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    max-width: 1200px;
-    align-items: flex-start;
-}
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 1200px;
+            align-items: flex-start;
+        }
 
-.footer-left, .footer-center, .footer-right {
-    flex: 1;
-    margin: 0 30px;
-    text-align: left;
-}
+        .footer-left, .footer-center, .footer-right {
+            flex: 1;
+            margin: 0 30px;
+            text-align: left;
+        }
 
-.footer-logo-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
+        .footer-logo-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-.footer-logo {
-    width: 60px;
-}
+        .footer-logo {
+            width: 60px;
+        }
 
-.footer-title {
-    font-size: 24px;
-    font-weight: 700;
-    margin: 0;
-}
+        .footer-title {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+        }
 
-.footer-description {
-    font-size: 16px;
-    line-height: 1.5;
-    margin-top: 10px;
-    max-width: 350px;
-}
+        .footer-description {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-top: 10px;
+            max-width: 350px;
+        }
 
-.footer-heading {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
+        .footer-heading {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
 
-.footer-links {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
+        .footer-links {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
 
-.footer-links li {
-    margin-bottom: 10px;
-}
+        .footer-links li {
+            margin-bottom: 10px;
+        }
 
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-}
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
 
-.footer-links a:hover {
-    text-decoration: underline;
-    color: #ff6347; /* تغيير اللون عند التمرير */
-}
+        .footer-links a:hover {
+            text-decoration: underline;
+            color: #ff6347;
+        }
 
-.footer-right p {
-    margin: 0;
-    font-size: 16px;
-    line-height: 1.5;
-}
+        .footer-right p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
 
-.footer-social {
-    margin-top: 20px;
-}
+        .footer-social {
+            margin-top: 20px;
+        }
 
-.footer-social .social-link {
-    color: white;
-    margin-right: 10px;
-    font-size: 24px;
-    text-decoration: none;
-}
+        .footer-social .social-link {
+            color: white;
+            margin-right: 10px;
+            font-size: 24px;
+            text-decoration: none;
+        }
 
-.footer-social .social-link:hover {
-    color: #ff6347;
-}
-
+        .footer-social .social-link:hover {
+            color: #ff6347;
+        }
     </style>
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
@@ -1474,27 +269,42 @@
             <div class="collapse navbar-collapse navbar-center" id="navbarResponsive">
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="@Url.Action("LandingPage", "Home", new { area = "Customer" })">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Our Story</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("OurStory", "Home", new { area = "Customer" })">Our Story</a></li>
+
+                    <!-- Dropdown menu for Products -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categories
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href='@Url.Action("Index", "Home", new { area = "Customer", category = "Traditional Clothing" })'>Embroidered Clothing</a></li>
+                            <li><a class="dropdown-item" href='@Url.Action("Index", "Home", new { area = "Customer", category = "Embroidered Accessories" })'>Embroidered Accessories</a></li>
+                            <li><a class="dropdown-item" href='@Url.Action("Index", "Home", new { area = "Customer", category = "Handmade Ceramics" })'>Handmade Ceramics</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
-            <!-- Right-aligned buttons (Dashboard, Hello User, Logout, Cart) -->
+            <!-- Right-aligned buttons (Dashboard, My Settings, Logout, Cart) -->
             <div class="navbar-right ms-auto">
                 @if (User.Identity.IsAuthenticated)
                 {
                     @if (User.IsInRole(AppConstants.AdminRole))
                     {
-                        <a href="/Admin/Dashboard/Index" class="nav-link fw-bold text-black">
+                        <!-- Dashboard button for admin role -->
+                        <a href="/Admin/Dashboard/Index" class="nav-link dashboard-button fw-bold text-white">
                             <i class="fas fa-tachometer-alt"></i> Dashboard
                         </a>
                     }
                     else
                     {
+                        <!-- My Settings dropdown for regular users -->
                         <div class="nav-item dropdown">
-                            <a class="nav-link fw-bold text-black dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">My Setting</a>
+                            <a class="nav-link settings-button fw-bold text-white dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                My Settings
+                            </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="/Identity/Account/Manage">Edit Profile</a></li>
-                                <li><a class="dropdown-item" href="/Customer/Orders/MyOrders">My Orders</a></li> <!-- هنا تمت إضافة زر "My Orders" -->
+                                <li><a class="dropdown-item" href="/Customer/Orders/MyOrders">My Orders</a></li>
                             </ul>
                         </div>
                     }
@@ -1511,45 +321,44 @@
 
     <!-- Page content goes here -->
     @RenderBody();
-<footer class="custom-footer">
-    <div class="footer-content">
-        <!-- Left Section (Logo and Brief Description) -->
-        <div class="footer-left">
-            <div class="footer-logo-title">
-                <img src="/customer/images/logo-Palastine.jpg" alt="Shop Palestine Logo" class="footer-logo">
-                <h2 class="footer-title">Shop Palestine</h2>
+
+    <!-- Footer -->
+    <footer class="custom-footer">
+        <div class="footer-content">
+            <!-- Left Section (Logo and Brief Description) -->
+            <div class="footer-left">
+                <div class="footer-logo-title">
+                    <img src="/customer/images/logo-Palastine.jpg" alt="Shop Palestine Logo" class="footer-logo">
+                    <h2 class="footer-title">Shop Palestine</h2>
+                </div>
+                <p class="footer-description">
+                    Supporting Palestinian artisans by providing a platform for selling handcrafted products made with passion and care.
+                </p>
             </div>
-            <p class="footer-description">
-                Supporting Palestinian artisans by providing a platform for selling handcrafted products made with passion and care.
-            </p>
-        </div>
 
-        <!-- Center Section (Important Links) -->
-        <div class="footer-center">
-            <h3 class="footer-heading">Quick Links</h3>
-            <ul class="footer-links">
-                <li><a href='@Url.Action("LandingPage", "Home", new { area = "Customer" })'>Home</a></li>
-                <li><a href='@Url.Action("OurStory", "Home", new { area = "Customer" })'>Our Story</a></li>
-                <li><a href='@Url.Action("Artisans", "Home", new { area = "Customer" })'>Meet the Artisans</a></li>
-                <li><a href='@Url.Action("Products", "Home", new { area = "Customer" })'>Products</a></li>
-                <li><a href='@Url.Action("Contact", "Home", new { area = "Customer" })'>Contact Us</a></li>
-            </ul>
-        </div>
+            <!-- Center Section (Important Links) -->
+            <div class="footer-center">
+                <h3 class="footer-heading">Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href='@Url.Action("LandingPage", "Home", new { area = "Customer" })'>Home</a></li>
+                    <li><a class="nav-link" href="@Url.Action("OurStory", "Home", new { area = "Customer" })">Our Story</a></li>
+                    <li><a href="/Customer/Home/Index">Products</a></li>
+                </ul>
+            </div>
 
-        <!-- Right Section (Contact Info and Social Media) -->
-        <div class="footer-right">
-            <h3 class="footer-heading">Contact Us</h3>
-            <p>123 Artisan Street<br>Ramallah, Palestine</p>
-            <p>+970 2 1234567</p>
-            <div class="footer-social">
-                <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+            <!-- Right Section (Contact Info and Social Media) -->
+            <div class="footer-right">
+                <h3 class="footer-heading">Contact Us</h3>
+                <p>123 Artisan Street<br>Ramallah, Palestine</p>
+                <p>+970 2 1234567</p>
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
             </div>
         </div>
-    </div>
-</footer>
-
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/customer/js/scripts.js"></script>

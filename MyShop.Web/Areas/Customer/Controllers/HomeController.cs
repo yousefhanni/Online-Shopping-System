@@ -32,6 +32,11 @@ namespace MyShop.Web.Areas.Customer.Controllers
             // Pass the featured products to the view
             return View(featuredProducts);
         }
+        // Action for Our Story page
+        public IActionResult OurStory()
+        {
+            return View();
+        }
 
         // Endpoint to display a paginated list of products with optional filtering by search query and category    
         public async Task<IActionResult> Index(string query, string category, int? page)
