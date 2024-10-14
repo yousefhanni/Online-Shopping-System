@@ -1,7 +1,9 @@
 # E-Shopping MVC System
 
 ## Overview
-This project is a Shopping MVC system developed using .NET 8.0. It is designed to offer a comprehensive solution for managing an online shopping platform. The system includes features such as product management, category management, user authentication, shopping cart functionality, order processing, and an admin dashboard for managing the entire application. The project follows a modular architecture that ensures scalability, maintainability, and ease of development.
+This project is a Shopping MVC system developed using **.NET 8.0**. It is designed to offer a comprehensive solution for managing an online shopping platform. The system includes features such as product management, category management, user authentication, shopping cart functionality, order processing, and an admin dashboard for managing the entire application. The project follows a modular architecture that ensures scalability, maintainability, and ease of development.
+
+You can check out the live demo here: [Live Demo](http://palestine-shop.runasp.net)
 
 ## Technologies Used
 - **MVC .NET 8.0**
